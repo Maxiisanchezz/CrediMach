@@ -2,8 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Control de Créditos y Pagos</title>
+  
+  <!-- Configuración PWA / Modo App -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" href="logo.png" type="image/png">
+  <meta name="theme-color" content="#2c3e50">
+  
+  <!-- Configuración para pantalla completa en iPhone/iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Créditos">
+
   <style>
     * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f6f9; margin: 0; padding: 15px; color: #333; }
@@ -365,26 +377,25 @@
       }
     }
 
-    // REGISTRO DEL SERVICE WORKER PARA MODO OFFLINE
+    // Registro del Service Worker
     if ('serviceWorker' in navigator) {
-      const swCode = `
-        const CACHE_NAME = 'creditos-app-v1';
-        self.addEventListener('install', e => {
-          e.waitUntil(
-            caches.open(CACHE_NAME).then(cache => cache.addAll(['./']))
-          );
-        });
-        self.addEventListener('fetch', e => {
-          e.respondWith(
-            caches.match(e.request).then(response => response || fetch(e.request))
-          );
-        });
-      `;
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      const blobURL = URL.createObjectURL(blob);
-      navigator.serviceWorker.register(blobURL)
-        .then(() => console.log('App lista para usar sin internet'))
-        .catch(err => console.error('Error con Service Worker:', err));
+      window.addEventListener('load', () => {
+        const swCode = `
+          const CACHE_NAME = 'creditos-app-v2';
+          self.addEventListener('install', e => {
+            e.waitUntil(
+              caches.open(CACHE_NAME).then(cache => cache.addAll(['./', 'index.html', 'manifest.json']))
+            );
+          });
+          self.addEventListener('fetch', e => {
+            e.respondWith(
+              caches.match(e.request).then(response => response || fetch(e.request))
+            );
+          });
+        `;
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob));
+      });
     }
   </script>
 </body>
