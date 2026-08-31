@@ -6,7 +6,7 @@
 <title>CREDIMACH - ADMIN</title>
 <style>
 body{margin:0;background:#0F1113;color:#fff;font-family:Arial;padding:20px}
-.login{max-width:350px;margin:80px auto;background:#1A1E23;padding:30px;border-radius:15px;text-align:center;border:1px solid #FFD70044}
+.login{max-width:360px;margin:60px auto;background:#1A1E23;padding:30px;border-radius:15px;text-align:center;border:1px solid #FFD70044}
 input,select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;background:#2a2a2a;color:#fff;box-sizing:border-box}
 .btn{background:#FFD700;color:#000;padding:12px;width:100%;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
 table{width:100%;border-collapse:collapse;margin-top:20px;background:#1A1E23;border-radius:10px;overflow:hidden}
@@ -18,31 +18,39 @@ td{padding:10px;border-bottom:1px solid #333;font-size:13px}
 .pagado{background:#00C851;color:#000}
 .debe{background:#ff4444;color:#fff}
 .wsp{color:#25D366;text-decoration:none;font-weight:bold}
+.logo{width:90px;height:90px;border-radius:50%;border:3px solid #FFD700;object-fit:cover;background:#000}
+.logoSmall{width:55px;height:55px;border-radius:50%;border:2px solid #FFD700;object-fit:cover;background:#000}
 </style>
 </head>
 <body>
 
 <div id="loginBox" class="login">
-<h2 style="color:#FFD700">$ CREDIMACH ADMIN</h2>
-<p style="color:#aaa">Tu WhatsApp: 3734517795</p>
+<img src="logo.png" class="logo" onerror="this.src='https://i.ibb.co/3mS8J0g/dolar.png'">
+<h2 style="color:#FFD700;margin:10px 0 5px">$ CREDIMACH</h2>
+<p style="color:#aaa;margin:0 0 15px">Tu WhatsApp: 3734517795</p>
 <input id="pass" type="text" value="Todocasero.2020">
 <button class="btn" onclick="entrar()">ENTRAR</button>
 <p id="error" style="color:#ff4444;display:none;margin-top:10px"></p>
 </div>
 
 <div id="panel" class="hidden">
-<h1 style="color:#FFD700">$ CREDIMACH</h1>
-<p>Contacto directo: <a class="wsp" href="https://wa.me/5493734517795" target="_blank">3734517795 - Click para WhatsApp</a></p>
+<div style="display:flex;align-items:center;gap:15px;margin-bottom:20px">
+<img src="logo.png" class="logoSmall" onerror="this.src='https://i.ibb.co/3mS8J0g/dolar.png'">
+<div>
+<h1 style="color:#FFD700;margin:0;font-size:22px">$ CREDIMACH</h1>
+<p style="margin:0;color:#aaa">Admin | <a class="wsp" href="https://wa.me/5493734517795" target="_blank">3734517795</a></p>
+</div>
+</div>
 
 <div class="card">
 <h3 style="color:#FFD700">+ Nuevo cliente</h3>
 <input id="nombre" placeholder="Nombre completo">
 <input id="dni" placeholder="DNI">
-<input id="tel" placeholder="WhatsApp cliente sin 0 ni 15 Ej: 3734123456">
+<input id="tel" placeholder="WhatsApp cliente">
 <input id="monto" type="number" placeholder="Monto Ej: 100000">
 <select id="tipo"><option value="mensual">Mensual</option><option value="semanal">Semanal</option></select>
 <select id="cuotas"><option value="6" selected>6 cuotas</option><option value="12">12</option><option value="20">20</option></select>
-<button class="btn" onclick="agregar()">GUARDAR</button>
+<button class="btn" onclick="agregar()">GUARDAR CLIENTE</button>
 </div>
 
 <div class="card">
@@ -51,7 +59,7 @@ td{padding:10px;border-bottom:1px solid #333;font-size:13px}
 <table><thead><tr><th>Cliente</th><th>WhatsApp</th><th>Préstamo</th><th>Total</th><th>Cuota</th><th>Estado</th><th></th></tr></thead><tbody id="tabla"></tbody></table>
 </div>
 </div>
-<button class="btn" style="background:#333;color:#fff" onclick="salir()">Salir</button>
+<button class="btn" style="background:#333;color:#fff" onclick="salir()">Cerrar sesión</button>
 </div>
 
 <script>
@@ -63,9 +71,7 @@ document.getElementById('loginBox').classList.add('hidden');
 document.getElementById('panel').classList.remove('hidden');
 cargar();
 }else{
-let e = document.getElementById('error');
-e.style.display='block';
-e.innerText = "Clave incorrecta. Usa: Todocasero.2020";
+let e = document.getElementById('error'); e.style.display='block'; e.innerText="Clave incorrecta";
 }
 }
 function salir(){location.reload()}
@@ -78,8 +84,7 @@ let monto=parseFloat(document.getElementById('monto').value);
 let tipo=document.getElementById('tipo').value;
 let cuotas=parseInt(document.getElementById('cuotas').value);
 if(!nombre||!monto)return alert('Falta nombre y monto');
-let total=monto*1.40;
-let valorCuota=total/cuotas;
+let total=monto*1.40; let valorCuota=total/cuotas;
 clientes.push({nombre,dni,tel,monto,total,cuotas,tipo,valorCuota,estado:'debe',fecha:new Date().toLocaleDateString()});
 localStorage.setItem('credimach_clientes',JSON.stringify(clientes));
 document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('monto').value='';
@@ -90,15 +95,7 @@ let html='';let totalPlata=0;
 clientes.forEach((c,i)=>{
 totalPlata+=c.monto;
 let linkWsp = c.tel? `https://wa.me/549${c.tel}` : `https://wa.me/5493734517795`;
-html+=`<tr>
-<td><b>${c.nombre}</b><br><small style="color:#888">${c.fecha}</small></td>
-<td><a class="wsp" href="${linkWsp}" target="_blank">${c.tel||'Sin tel'}</a></td>
-<td>$${c.monto.toLocaleString()}</td>
-<td>$${c.total.toLocaleString()}</td>
-<td>$${Math.round(c.valorCuota).toLocaleString()}</td>
-<td><span class="tag ${c.estado}">${c.estado}</span><br><button onclick="cambiarEstado(${i})" style="font-size:10px;margin-top:4px;background:#333;color:#fff;border:none;padding:4px 6px;border-radius:4px">Pagó</button></td>
-<td><button onclick="borrar(${i})" style="background:#ff4444;color:#fff;border:none;padding:5px 8px;border-radius:5px">X</button></td>
-</tr>`;
+html+=`<tr><td><b>${c.nombre}</b><br><small style="color:#888">${c.fecha}</small></td><td><a class="wsp" href="${linkWsp}" target="_blank">${c.tel||'Sin tel'}</a></td><td>$${c.monto.toLocaleString()}</td><td>$${c.total.toLocaleString()}</td><td>$${Math.round(c.valorCuota).toLocaleString()}</td><td><span class="tag ${c.estado}">${c.estado}</span><br><button onclick="cambiarEstado(${i})" style="font-size:10px;margin-top:4px;background:#333;color:#fff;border:none;padding:4px 6px;border-radius:4px">Pagó</button></td><td><button onclick="borrar(${i})" style="background:#ff4444;color:#fff;border:none;padding:5px 8px;border-radius:5px">X</button></td></tr>`;
 });
 document.getElementById('tabla').innerHTML=html;
 document.getElementById('totalClientes').innerText=clientes.length;
