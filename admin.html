@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CREDIMACH - ADMIN PRIVADO</title>
+<title>CREDIMACH - ADMIN</title>
 <style>
 body{margin:0;background:#0F1113;color:#fff;font-family:Arial;padding:20px}
-h1{color:#FFD700}
-.login{max-width:350px;margin:100px auto;background:#1A1E23;padding:30px;border-radius:15px;text-align:center;border:1px solid #FFD70044}
+.login{max-width:350px;margin:80px auto;background:#1A1E23;padding:30px;border-radius:15px;text-align:center;border:1px solid #FFD70044}
 input,select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;background:#2a2a2a;color:#fff;box-sizing:border-box}
 .btn{background:#FFD700;color:#000;padding:12px;width:100%;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
 table{width:100%;border-collapse:collapse;margin-top:20px;background:#1A1E23;border-radius:10px;overflow:hidden}
-th{background:#FFD700;color:#000;padding:12px;text-align:left}
-td{padding:12px;border-bottom:1px solid #333;font-size:14px}
+th{background:#FFD700;color:#000;padding:10px;text-align:left;font-size:13px}
+td{padding:10px;border-bottom:1px solid #333;font-size:13px}
 .hidden{display:none}
 .card{background:#1A1E23;padding:20px;border-radius:15px;margin-bottom:20px;border:1px solid #333}
 .tag{padding:4px 10px;border-radius:20px;font-size:11px}
@@ -25,69 +24,60 @@ td{padding:12px;border-bottom:1px solid #333;font-size:14px}
 
 <div id="loginBox" class="login">
 <h2 style="color:#FFD700">$ CREDIMACH ADMIN</h2>
-<p style="color:#aaa">Acceso solo para vos</p>
-<input id="pass" type="password" placeholder="Contraseña">
+<p style="color:#aaa">Tu WhatsApp: 3734517795</p>
+<input id="pass" type="text" value="Todocasero.2020">
 <button class="btn" onclick="entrar()">ENTRAR</button>
-<p id="error" style="color:#ff4444;display:none">Contraseña incorrecta</p>
-<p style="margin-top:15px;font-size:13px;color:#aaa">Contacto: <a class="wsp" href="https://wa.me/543734517795" target="_blank">3734517795</a></p>
+<p id="error" style="color:#ff4444;display:none;margin-top:10px"></p>
 </div>
 
 <div id="panel" class="hidden">
-<h1>$ CREDIMACH - Panel Privado</h1>
-<p style="color:#aaa">Tu número: <a class="wsp" href="https://wa.me/543734517795" target="_blank">3734517795</a> | Solo vos ves esto.</p>
+<h1 style="color:#FFD700">$ CREDIMACH</h1>
+<p>Contacto directo: <a class="wsp" href="https://wa.me/5493734517795" target="_blank">3734517795 - Click para WhatsApp</a></p>
 
 <div class="card">
-<h3 style="color:#FFD700">+ Cargar nuevo cliente</h3>
+<h3 style="color:#FFD700">+ Nuevo cliente</h3>
 <input id="nombre" placeholder="Nombre completo">
 <input id="dni" placeholder="DNI">
-<input id="tel" placeholder="WhatsApp del cliente Ej: 3734...">
-<input id="monto" type="number" placeholder="Monto prestado Ej: 100000">
-<select id="tipo">
-<option value="mensual">Mensual</option>
-<option value="semanal">Semanal</option>
-</select>
-<select id="cuotas">
-<option value="3">3 cuotas</option>
-<option value="6" selected>6 cuotas</option>
-<option value="12">12 cuotas</option>
-<option value="20">20 cuotas</option>
-</select>
-<button class="btn" onclick="agregar()">GUARDAR CLIENTE</button>
+<input id="tel" placeholder="WhatsApp cliente sin 0 ni 15 Ej: 3734123456">
+<input id="monto" type="number" placeholder="Monto Ej: 100000">
+<select id="tipo"><option value="mensual">Mensual</option><option value="semanal">Semanal</option></select>
+<select id="cuotas"><option value="6" selected>6 cuotas</option><option value="12">12</option><option value="20">20</option></select>
+<button class="btn" onclick="agregar()">GUARDAR</button>
 </div>
 
 <div class="card">
-<h3>Clientes: <span id="totalClientes">0</span> | Plata en calle: $<span id="totalPlata">0</span></h3>
+<h3>Clientes: <span id="totalClientes">0</span> | En calle: $<span id="totalPlata">0</span></h3>
 <div style="overflow-x:auto">
-<table>
-<thead><tr><th>Cliente</th><th>Contacto</th><th>Préstamo</th><th>Total 40%</th><th>Cuota</th><th>Estado</th><th></th></tr></thead>
-<tbody id="tabla"></tbody>
-</table>
+<table><thead><tr><th>Cliente</th><th>WhatsApp</th><th>Préstamo</th><th>Total</th><th>Cuota</th><th>Estado</th><th></th></tr></thead><tbody id="tabla"></tbody></table>
 </div>
 </div>
-<button class="btn" style="background:#333;color:#fff" onclick="salir()">Cerrar sesión</button>
+<button class="btn" style="background:#333;color:#fff" onclick="salir()">Salir</button>
 </div>
 
 <script>
 const CLAVE = "Todocasero.2020";
-const MI_NUMERO = "3734517795";
-
 function entrar(){
-if(document.getElementById('pass').value===CLAVE){
+let p = document.getElementById('pass').value.trim();
+if(p === CLAVE){
 document.getElementById('loginBox').classList.add('hidden');
 document.getElementById('panel').classList.remove('hidden');
 cargar();
-}else{document.getElementById('error').style.display='block'}
+}else{
+let e = document.getElementById('error');
+e.style.display='block';
+e.innerText = "Clave incorrecta. Usa: Todocasero.2020";
+}
 }
 function salir(){location.reload()}
 let clientes = JSON.parse(localStorage.getItem('credimach_clientes')||'[]');
 function agregar(){
 let nombre=document.getElementById('nombre').value;
 let dni=document.getElementById('dni').value;
-let tel=document.getElementById('tel').value;
+let tel=document.getElementById('tel').value.replace(/\D/g,'');
 let monto=parseFloat(document.getElementById('monto').value);
 let tipo=document.getElementById('tipo').value;
 let cuotas=parseInt(document.getElementById('cuotas').value);
-if(!nombre||!monto)return alert('Completa nombre y monto');
+if(!nombre||!monto)return alert('Falta nombre y monto');
 let total=monto*1.40;
 let valorCuota=total/cuotas;
 clientes.push({nombre,dni,tel,monto,total,cuotas,tipo,valorCuota,estado:'debe',fecha:new Date().toLocaleDateString()});
@@ -99,15 +89,15 @@ function cargar(){
 let html='';let totalPlata=0;
 clientes.forEach((c,i)=>{
 totalPlata+=c.monto;
-let linkWsp = c.tel? `https://wa.me/54${c.tel.replace(/\D/g,'')}` : `https://wa.me/543734517795`;
+let linkWsp = c.tel? `https://wa.me/549${c.tel}` : `https://wa.me/5493734517795`;
 html+=`<tr>
-<td><b>${c.nombre}</b><br><small style="color:#aaa">${c.fecha} - ${c.cuotas} ${c.tipo}</small></td>
-<td>${c.dni}<br><a class="wsp" href="${linkWsp}" target="_blank">${c.tel||'WhatsApp'}</a></td>
+<td><b>${c.nombre}</b><br><small style="color:#888">${c.fecha}</small></td>
+<td><a class="wsp" href="${linkWsp}" target="_blank">${c.tel||'Sin tel'}</a></td>
 <td>$${c.monto.toLocaleString()}</td>
 <td>$${c.total.toLocaleString()}</td>
-<td>$${Math.round(c.valorCuota).toLocaleString()}<br><small>${c.tipo}</small></td>
-<td><span class="tag ${c.estado}">${c.estado.toUpperCase()}</span><br><button onclick="cambiarEstado(${i})" style="font-size:11px;margin-top:5px;background:#333;color:#fff;border:none;padding:4px 8px;border-radius:5px">Marcar pagado</button></td>
-<td><button onclick="borrar(${i})" style="background:#ff4444;color:#fff;border:none;padding:6px 10px;border-radius:6px">X</button></td>
+<td>$${Math.round(c.valorCuota).toLocaleString()}</td>
+<td><span class="tag ${c.estado}">${c.estado}</span><br><button onclick="cambiarEstado(${i})" style="font-size:10px;margin-top:4px;background:#333;color:#fff;border:none;padding:4px 6px;border-radius:4px">Pagó</button></td>
+<td><button onclick="borrar(${i})" style="background:#ff4444;color:#fff;border:none;padding:5px 8px;border-radius:5px">X</button></td>
 </tr>`;
 });
 document.getElementById('tabla').innerHTML=html;
@@ -115,7 +105,7 @@ document.getElementById('totalClientes').innerText=clientes.length;
 document.getElementById('totalPlata').innerText=totalPlata.toLocaleString();
 }
 function cambiarEstado(i){clientes[i].estado=clientes[i].estado==='debe'?'pagado':'debe';localStorage.setItem('credimach_clientes',JSON.stringify(clientes));cargar()}
-function borrar(i){if(confirm('¿Borrar este cliente?')){clientes.splice(i,1);localStorage.setItem('credimach_clientes',JSON.stringify(clientes));cargar()}}
+function borrar(i){if(confirm('Borrar?')){clientes.splice(i,1);localStorage.setItem('credimach_clientes',JSON.stringify(clientes));cargar()}}
 </script>
 </body>
-  </html>
+</html>
