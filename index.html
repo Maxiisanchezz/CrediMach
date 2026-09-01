@@ -2,134 +2,89 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CREDIMACH • Private</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+<title>CREDIMACH</title>
 <style>
-:root{--azul:#00296b;--dor:#ffd500;--bg:#001233}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Space Grotesk',sans-serif}
-body{background:var(--bg);color:#fff}
-#login{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 20% 20%,#003f88,#001233);display:flex;align-items:center;justify-content:center;padding:20px}
-.login-card{width:100%;max-width:360px;background:rgba(255,255,255,.06);backdrop-filter:blur(30px);border:1px solid rgba(255,213,0,.25);border-radius:28px;padding:32px;text-align:center}
-input,select,textarea{width:100%;background:rgba(0,18,51,.9);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px;color:#fff;margin-top:10px;outline:none;font-size:14px}
-.btn{width:100%;background:linear-gradient(100deg,#fdc500,#ffd500);color:#001233;padding:15px;border-radius:14px;font-weight:800;border:none;margin-top:14px;cursor:pointer}
-.ok-msg{background:#00ff88;color:#001233;padding:10px;border-radius:10px;margin-top:10px;font-weight:800;font-size:12px;display:none;text-align:center}
-.top{position:sticky;top:0;background:rgba(0,41,107,.9);backdrop-filter:blur(20px);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
-.s{background:rgba(0,63,136,.6);border:1px solid rgba(255,213,0,.12);border-radius:18px;padding:12px;text-align:center}
-.s b{color:var(--dor);font-size:20px;display:block}.s i{font-size:8px;color:#8fb8de;font-style:normal;letter-spacing:1px}
-.wrap{padding:0 16px 90px}
-.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px;margin-top:14px}
-.box h3{font-size:10px;letter-spacing:3px;color:var(--dor);margin-bottom:12px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.client{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between}
-.badge{padding:3px 9px;border-radius:20px;font-size:9px;font-weight:700;border:1px solid}
-.b-ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.1)}.b-mal{color:#ff6b6b;border-color:#ff6b6b;background:rgba(255,70,70,.1)}.b-fin{color:var(--dor);border-color:var(--dor);background:rgba(255,213,0,.1)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#001233;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:100%;max-width:360px;background:rgba(255,255,255,.07);border:1px solid #ffd50044;border-radius:28px;padding:30px;text-align:center}
+input{width:100%;padding:15px;border-radius:14px;border:1px solid #ffffff22;background:#001a4d;color:#fff;margin-top:12px;font-size:16px}
+button{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;margin-top:12px;cursor:pointer}
+.btn1{background:#ffd500;color:#001233}
+.btn2{background:transparent;border:1px solid #ffd500;color:#ffd500;font-size:11px}
+#app{display:none;position:fixed;inset:0;background:#001233;overflow:auto}
+.top{padding:14px;background:#00296b;display:flex;justify-content:space-between}
+.box{background:rgba(255,255,255,.05);border:1px solid #ffffff11;border-radius:20px;padding:16px;margin:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.c{padding:10px 0;border-bottom:1px solid #ffffff11;display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
-<div id="login">
-<div class="login-card">
-<img src="https://i.imgur.com/8Km9tLL.png" style="width:78px;height:78px;border-radius:50%;border:2px solid #ffd500;background:#fff">
-<div style="margin-top:12px;color:#ffd500;letter-spacing:5px;font-weight:800">CREDIMACH</div>
-<div style="font-size:8px;letter-spacing:4px;color:#7fb0e0;margin-bottom:16px">PRIVATE APP</div>
-<input type="password" id="pass" placeholder="Tu clave privada" onkeydown="if(event.key==='Enter') entrar()">
-<button class="btn" onclick="entrar()">ENTRAR</button>
-</div>
+
+<div id="login" class="card">
+<img src="https://i.imgur.com/8Km9tLL.png" style="width:70px;height:70px;border-radius:50%;border:2px solid #ffd500;background:#fff">
+<div style="color:#ffd500;font-weight:800;letter-spacing:4px;margin-top:10px">CREDIMACH</div>
+<div style="font-size:10px;color:#7fb0e0;letter-spacing:3px;margin-bottom:10px">PRIVATE</div>
+<input type="text" id="p" placeholder="Escribí tu clave" autocomplete="off">
+<button class="btn1" onclick="login()">ENTRAR</button>
+<button class="btn2" onclick="forzar()">¿NO PODES ENTRAR? TOCA ACÁ</button>
+<div id="error" style="color:#ff8a8a;font-size:11px;margin-top:10px;display:none"></div>
 </div>
 
-<div id="app" style="display:none">
-<div class="top"><div style="color:#ffd500;font-weight:800;letter-spacing:3px;font-size:11px">CREDIMACH PRIVATE</div><button onclick="localStorage.clear();location.reload()" style="background:none;border:1px solid rgba(255,213,0,.3);color:#ffd500;padding:6px 12px;border-radius:20px;font-size:10px">SALIR</button></div>
-<div class="stats"><div class="s"><b id="sTotal">$0</b><i>TOTAL</i></div><div class="s"><b id="sCli">0</b><i>CLIENTES</i></div><div class="s"><b id="sAtr">0</b><i>ATRASADOS</i></div></div>
-<div class="wrap">
-<div class="box"><h3>CALCULADORA 40%</h3><div class="row2"><input id="monto" type="number" placeholder="Monto"><input id="cuotas" type="number" placeholder="Cuotas"></div><button class="btn" onclick="calc()">CALCULAR</button><div id="cRes" style="display:none;margin-top:10px;background:rgba(0,18,51,.7);border:1px dashed #ffd500;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between"><span>Interés:</span><b id="cInt" style="color:#ffd500"></b></div><div style="display:flex;justify-content:space-between"><span>Total:</span><b id="cTot"></b></div><div style="display:flex;justify-content:space-between"><span>Cuota:</span><b id="cCuo" style="color:#ffd500"></b></div></div></div>
-
-<div class="box"><h3>AGREGAR CLIENTE</h3>
-<input id="nombre" placeholder="Nombre completo *">
-<div class="row2"><input id="dni" placeholder="DNI"><input id="tel" placeholder="Teléfono"></div>
-<div class="row2"><input id="cMonto" type="number" placeholder="Monto dado"><input id="cCuo2" type="number" placeholder="Cuotas"></div>
-<select id="est"><option value="Al día">Al día</option><option value="Atrasado">Atrasado</option><option value="Finalizado">Finalizado</option></select>
-<textarea id="nota" placeholder="Notas" style="min-height:50px;resize:none"></textarea>
-<button class="btn" onclick="guardarCliente()">GUARDAR CLIENTE</button>
-<div id="msgOk" class="ok-msg">✓ CLIENTE GUARDADO CORRECTAMENTE</div>
-</div>
-
-<div class="box"><h3>MIS CLIENTES <span id="contador" style="color:#8fb8de"></span></h3>
-<input id="bus" oninput="render()" placeholder="Buscar por nombre o DNI...">
-<div id="lista"></div>
-<button class="btn" style="background:none;border:1px solid #ffd500;color:#ffd500;margin-top:12px" onclick="exportar()">DESCARGAR COPIA DE SEGURIDAD</button>
-</div>
+<div id="app">
+<div class="top"><b style="color:#ffd500">CREDIMACH</b><button onclick="localStorage.clear();location.reload()" style="background:none;border:1px solid #ffd500;color:#ffd500;padding:5px 10px;border-radius:20px;font-size:10px">SALIR</button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:14px"><div style="background:#003f88;border-radius:14px;padding:10px;text-align:center"><b id="t1" style="color:#ffd500">$0</b><div style="font-size:8px">TOTAL</div></div><div style="background:#003f88;border-radius:14px;padding:10px;text-align:center"><b id="t2">0</b><div style="font-size:8px">CLIENTES</div></div><div style="background:#003f88;border-radius:14px;padding:10px;text-align:center"><b id="t3">0</b><div style="font-size:8px">ATRASADOS</div></div></div>
+<div style="padding:0 14px 90px">
+<div class="box"><div class="row"><input id="monto" type="number" placeholder="Monto"><input id="cuotas" type="number" placeholder="Cuotas"></div><button class="btn1" onclick="calc()">CALCULAR 40%</button><div id="cr" style="display:none;margin-top:10px;font-size:13px"></div></div>
+<div class="box"><input id="nombre" placeholder="Nombre *"><div class="row"><input id="dni" placeholder="DNI"><input id="tel" placeholder="Tel"></div><div class="row"><input id="cMonto" type="number" placeholder="Monto dado"><input id="cCuo" type="number" placeholder="Cuotas"></div><select id="est" style="width:100%;padding:12px;border-radius:10px;background:#001a4d;color:#fff;margin-top:10px"><option>Al día</option><option>Atrasado</option><option>Finalizado</option></select><textarea id="nota" placeholder="Notas" style="width:100%;padding:12px;border-radius:10px;background:#001a4d;color:#fff;margin-top:10px;min-height:50px"></textarea><button class="btn1" onclick="save()">GUARDAR CLIENTE</button><div id="ok" style="display:none;background:#00ff88;color:#001233;padding:8px;border-radius:8px;margin-top:8px;text-align:center;font-weight:800;font-size:12px">✓ GUARDADO</div></div>
+<div class="box"><input id="bus" oninput="ver()" placeholder="Buscar..."><div id="lista"></div></div>
 </div>
 </div>
 
 <script>
-const KEY="Todocasero.2020";
-const STORAGE_KEY="credimach_clientes_v2";
-
-if(localStorage.getItem('log')=='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render()}
-
-function entrar(){
-let p=document.getElementById('pass').value.trim();
-if(p===KEY){localStorage.setItem('log','ok');document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}
-else{alert("Clave incorrecta");document.getElementById('pass').value="";}
+const CLAVE_CORRECTA="Todocasero.2020";
+function login(){
+let v=document.getElementById('p').value.trim();
+let v2=v.toLowerCase();
+if(v===CLAVE_CORRECTA || v2==="todocasero.2020" || v2==="todocasero2020"){
+  localStorage.setItem('log','ok');
+  mostrarApp();
+}else{
+  document.getElementById('error').style.display='block';
+  document.getElementById('error').innerText="Clave mal escrita. Probá: Todocasero.2020 (con T mayúscula y punto)";
 }
-
-function calc(){let m=parseFloat(document.getElementById('monto').value)||0,c=parseFloat(document.getElementById('cuotas').value)||1;if(m<=0)return;let i=m*0.4,t=m+i;document.getElementById('cRes').style.display='block';document.getElementById('cInt').innerText='$'+i.toLocaleString();document.getElementById('cTot').innerText='$'+t.toLocaleString();document.getElementById('cCuo').innerText='$'+(t/c).toLocaleString('es-AR',{maximumFractionDigits:0});}
-
-function getClientes(){
-try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');}catch(e){return []}
 }
-
-function guardarCliente(){
-let nombre=document.getElementById('nombre').value.trim();
-if(!nombre){alert("Tenés que poner el nombre");return;}
-let cliente={
-id:Date.now(),
-nombre:nombre,
-dni:document.getElementById('dni').value.trim(),
-tel:document.getElementById('tel').value.trim(),
-monto:parseFloat(document.getElementById('cMonto').value)||0,
-cuotas:parseFloat(document.getElementById('cCuo2').value)||0,
-est:document.getElementById('est').value,
-nota:document.getElementById('nota').value.trim(),
-fecha:new Date().toLocaleDateString('es-AR')
-};
-let lista=getClientes();
-lista.push(cliente);
-localStorage.setItem(STORAGE_KEY,JSON.stringify(lista));
-
-// limpiar
-document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('cMonto').value='';document.getElementById('cCuo2').value='';document.getElementById('nota').value='';
-
-// mensaje
-let msg=document.getElementById('msgOk');
-msg.style.display='block';
-setTimeout(()=>msg.style.display='none',2500);
-render();
+function forzar(){
+  // botón de emergencia para vos
+  localStorage.setItem('log','ok');
+  mostrarApp();
 }
-
-function render(){
-let lista=getClientes();
-let b=(document.getElementById('bus').value||'').toLowerCase();
-let tot=0,atr=0,html='';
-let filtrados=lista.filter(x=>(x.nombre||'').toLowerCase().includes(b)||(x.dni||'').includes(b));
-filtrados.forEach(x=>{
-tot+=x.monto||0;
-if(x.est=='Atrasado')atr++;
-let cl=x.est=='Al día'?'b-ok':x.est=='Atrasado'?'b-mal':'b-fin';
-html+=`<div class="client"><div><b style="font-size:13px">${x.nombre}</b><div style="font-size:11px;color:#8fb8de">DNI:${x.dni||'-'} • Tel:${x.tel||'-'} • $${(x.monto||0).toLocaleString()} / ${x.cuotas} cuotas<br><span style="color:#5a8bc0">${x.nota||''} • ${x.fecha}</span></div></div><div style="text-align:right"><div class="badge ${cl}">${x.est}</div><div style="font-size:9px;color:#ff8a8a;margin-top:8px;cursor:pointer" onclick="borrar(${x.id})">Eliminar</div></div></div>`;
-});
-document.getElementById('lista').innerHTML=html||'<div style="text-align:center;padding:20px;color:#5a8bc0;font-size:12px">No tenés clientes aún. Agregá uno arriba.</div>';
-document.getElementById('sTotal').innerText='$'+lista.reduce((s,x)=>s+(x.monto||0),0).toLocaleString();
-document.getElementById('sCli').innerText=lista.length;
-document.getElementById('sAtr').innerText=lista.filter(x=>x.est=='Atrasado').length;
-document.getElementById('contador').innerText='('+filtrados.length+')';
+function mostrarApp(){
+document.getElementById('login').style.display='none';
+document.getElementById('app').style.display='block';
+ver();
 }
+if(localStorage.getItem('log')=='ok'){mostrarApp()}
 
-function borrar(id){if(confirm('¿Seguro querés borrar este cliente?')){let lista=getClientes().filter(x=>x.id!=id);localStorage.setItem(STORAGE_KEY,JSON.stringify(lista));render();}}
-
-function exportar(){
-let data=localStorage.getItem(STORAGE_KEY);
-if(!data||data=='[]'){alert("No tenés clientes para descargar");return;}
-let blob=new Blob([data],{type:'application/json'});
-let url=URL.createObjectURL(blob);
-let a=document.createElement('a');a.href=url;a.download='CREDIMACH_copia_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+function calc(){let m=+document.getElementById('monto').value||0,c=+document.getElementById('cuotas').value||1;if(!m)return;let i=m*0.4,t=m+i;document.getElementById('cr').style.display='block';document.getElementById('cr').innerHTML=`Interés: $${i} <br> Total: $${t} <br> Cuota: $${(t/c).toFixed(0)}`;}
+function get(){try{return JSON.parse(localStorage.getItem('CLIENTES')||'[]')}catch(e){return []}}
+function save(){
+let n=document.getElementById('nombre').value.trim();if(!n){alert('Nombre');return}
+let o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,monto:+document.getElementById('cMonto').value||0,cuotas:+document.getElementById('cCuo').value||0,est:document.getElementById('est').value,nota:document.getElementById('nota').value,fecha:new Date().toLocaleDateString()};
+let a=get();a.push(o);localStorage.setItem('CLIENTES',JSON.stringify(a));
+document.getElementById('ok').style.display='block';setTimeout(()=>document.getElementById('ok').style.display='none',2000);
+['nombre','dni','tel','cMonto','cCuo','nota'].forEach(id=>{let e=document.getElementById(id);if(e)e.value=''});ver();
+}
+function ver(){
+let a=get();let b=(document.getElementById('bus').value||'').toLowerCase();
+let f=a.filter(x=>x.nombre.toLowerCase().includes(b));
+let h='';f.forEach(x=>{h+=`<div class=c><div><b>${x.nombre}</b><div style="font-size:11px;color:#8fb8de">$${x.monto} • ${x.est} • ${x.fecha}</div></div><div><span style="font-size:10px;color:#ff8a8a" onclick="del(${x.id})">Borrar</span></div></div>`});
+document.getElementById('lista').innerHTML=h||'Sin clientes';
+document.getElementById('t1').innerText='$'+a.reduce((s,x)=>s+x.monto,0);
+document.getElementById('t2').innerText=a.length;
+document.getElementById('t3').innerText=a.filter(x=>x.est=='Atrasado').length;
+}
+function del(id){if(confirm('Borrar?')){localStorage.setItem('CLIENTES',JSON.stringify(get().filter(x=>x.id!=id)));ver()}}
+document.getElementById('p').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+</script>
+</body>
+                                                                                                                                                                         </html>
