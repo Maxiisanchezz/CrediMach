@@ -1,9 +1,22 @@
 {
-  "name": "CREDIMACH Private",
+  "name": "CREDIMACH",
   "short_name": "CREDIMACH",
+  "description": "Sistema de prestamos CREDIMACH",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#001233",
   "theme_color": "#001233",
-  "icons": [{"src": "./logo.png","sizes": "512x512","type": "image/png"}]
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
