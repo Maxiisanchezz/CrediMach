@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CREDIMAX</title>
+<title>CREDIMACH</title>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
@@ -51,6 +51,8 @@ body{background:#001233}
 @keyframes bola2{from{transform:translate(0,0) scale(1)}to{transform:translate(-60vw,-45vh) scale(1.5)}}
 @keyframes bola3{from{transform:translate(-20vw,-10vh)}to{transform:translate(30vw,30vh)}}
 @keyframes bola4{from{transform:translate(0,0) scale(1)}to{transform:translate(-25vw,45vh) scale(1.8)}}
+
+/* HACER VISIBLES LAS ANIMACIONES */
 #login{background:rgba(0,18,51,.55)}
 .box{background:rgba(10,31,77,.78);backdrop-filter:blur(10px)}
 .top{background:rgba(0,41,107,.80);backdrop-filter:blur(10px)}
@@ -60,12 +62,12 @@ body{background:#001233}
 </head>
 <body><div class="moving-bg"><span></span><span></span><span></span><span></span></div><div id="login"><div class="card">
 <div class="logoWrap"><img src="./logo.png" onerror="this.parentElement.innerHTML='<b style=color:#001233;font-family:Bodoni Moda,serif;font-size:32px>CM</b>'"></div>
-<div class="brand">CREDIMAX</div>
+<div class="brand">CREDIMACH</div>
 <input id="pass" class="inp" type="password" placeholder="Clave">
 <button class="btn" onclick="entrar()">ENTRAR</button>
 <div id="err" style="color:#ff8a8a;margin-top:10px;display:none">Clave incorrecta</div>
 </div></div><div id="app">
-<div class="top"><b>CREDIMAX</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
+<div class="top"><b>CREDIMACH</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
 <div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div>
 <div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div>
@@ -119,7 +121,7 @@ function confirmarPago(conWA){
   if(!a[idx].pagos)a[idx].pagos=[];a[idx].pagos.push({monto:mo,fecha:fe});a[idx].pagado=(a[idx].pagado||0)+mo;if(a[idx].pagado>=a[idx].total)a[idx].est='Finalizado';
   save(a);cerrarPago();render();
   if(conWA){var tel=(a[idx].tel||'').replace(/[^0-9]/g,'');if(tel){if(tel.indexOf('54')!=0)tel='549'+tel;var pagado=a[idx].pagado;var saldo=a[idx].total-pagado;if(saldo<0)saldo=0;
-  var msg="*CREDIMAX - COMPROBANTE DE PAGO* %0A%0A";msg+="Estimado/a *"+encodeURIComponent(a[idx].nombre)+"*, hemos registrado su pago correctamente.%0A%0A";msg+="💵 *Importe abonado:* $"+mo.toLocaleString('es-AR')+"%0A";msg+="📅 *Fecha de pago:* "+fmt(fe)+"%0A";msg+="📊 *Total del crédito:* $"+a[idx].total.toLocaleString('es-AR')+"%0A";msg+="✅ *Total abonado:* $"+pagado.toLocaleString('es-AR')+"%0A";msg+="💰 *Saldo pendiente:* $"+saldo.toLocaleString('es-AR')+"%0A%0A";msg+="Gracias por su compromiso.%0AQuedamos a su disposición.%0A%0A";msg+="*CREDIMAX*";
+  var msg="*CREDIMACH - COMPROBANTE DE PAGO* %0A%0A";msg+="Estimado/a *"+encodeURIComponent(a[idx].nombre)+"*, hemos registrado su pago correctamente.%0A%0A";msg+="💵 *Importe abonado:* $"+mo.toLocaleString('es-AR')+"%0A";msg+="📅 *Fecha de pago:* "+fmt(fe)+"%0A";msg+="📊 *Total del crédito:* $"+a[idx].total.toLocaleString('es-AR')+"%0A";msg+="✅ *Total abonado:* $"+pagado.toLocaleString('es-AR')+"%0A";msg+="💰 *Saldo pendiente:* $"+saldo.toLocaleString('es-AR')+"%0A%0A";msg+="Gracias por su compromiso.%0AQuedamos a su disposición.%0A%0A";msg+="*CREDIMACH*";
   window.open('https://wa.me/'+tel+'?text='+msg,'_blank');}}
 }
 var editId=null;
@@ -131,4 +133,4 @@ function guardarEdit(){var a=get();var idx=a.findIndex(x=>x.id==editId);if(idx==
 function render(){var a=get();var tot=0;for(var i=0;i<a.length;i++)tot+=a[i].monto||0;document.getElementById('sTotal').innerText='$'+tot.toLocaleString('es-AR');document.getElementById('sCli').innerText=a.length;var atr=0;for(var i=0;i<a.length;i++){var dd=dias(a[i].f2);if(dd.n<0&&(a[i].pagado||0)<a[i].total)atr++;}document.getElementById('sAtr').innerText=atr;var b=(document.getElementById('bus').value||'').toLowerCase();var h='';for(var i=0;i<a.length;i++){var x=a[i];var texto=(x.nombre+' '+(x.dni||'')+' '+(x.tel||'')).toLowerCase();if(b&&texto.indexOf(b)<0)continue;var d=dias(x.f2);var sal=x.total-(x.pagado||0);var porc=x.total>0?Math.round((x.pagado||0)/x.total*100):0;h+='<div class=client><div class=cHead><div><b>'+x.nombre+'</b><div style="font-size:11px;color:#8fb8de">'+(x.dni||'')+' '+(x.tel||'')+'</div><div style="font-size:12px">$'+x.monto.toLocaleString('es-AR')+' | Saldo $'+sal.toLocaleString('es-AR')+'</div><div class=prog><i style="width:'+porc+'%"></i></div><div style="font-size:11px;margin-top:4px;color:#ffd500">'+d.txt+'</div></div><div style="color:#ff8a8a;cursor:pointer" onclick="if(confirm(\'Borrar?\')){var a=get().filter(z=>z.id!='+x.id+');save(a);render();}">✕</div></div><div class=act><button class=bSmall style="background:#ffd500;color:#001233" onclick="abrirPago('+x.id+')">PAGO</button><button class=bSmall style="background:transparent;border:1px solid #fff;color:#fff" onclick="abrirEdit('+x.id+')">✏️ EDITAR</button></div></div>';}document.getElementById('lista').innerHTML=h||'<div style="color:#8fb8de;text-align:center;padding:20px">Sin clientes</div>';}
 render();
 </script></body>
-</html>
+                   </html>
