@@ -1,30 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CREDIMACH</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CREDIMACH - Financiera Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#00296b;--azul2:#003f88;--azul3:#00509d;--dor:#ffd500;--dor2:#fdc500}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Space Grotesk',sans-serif}
+body{background:#001233;overflow-x:hidden}
+.hero{position:relative;min-height:100vh;background:radial-gradient(circle at 10% 20%,#00509d 0%,#003f88 25%,#00296b 50%,#001233 100%);display:flex;align-items:center;padding:24px}
+.blobs{position:absolute;inset:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.25}
+.b1{width:400px;height:400px;background:var(--dor);top:-100px;left:-100px;animation:float 8s infinite}
+.b2{width:500px;height:500px;background:#003f88;bottom:-150px;right:-100px;animation:float 10s infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
+.container{position:relative;z-index:2;max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+@media(max-width:800px){.container{grid-template-columns:1fr;text-align:center}.hero{padding-top:60px}}
+.badge-top{display:inline-flex;align-items:center;gap:8px;background:rgba(255,213,0,.12);border:1px solid rgba(255,213,0,.3);padding:8px 14px;border-radius:100px;color:var(--dor);font-size:10px;letter-spacing:2px;font-weight:700}
+h1{font-size:clamp(32px,6vw,58px);line-height:.9;color:#fff;font-weight:800;margin:18px 0}
+h1 span{background:linear-gradient(100deg,var(--dor),#ffe566);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:#8fb8de;font-size:15px;line-height:1.6;max-width:420px;margin:0 0 22px}
+@media(max-width:800px){.sub{margin:0 auto 22px}}
+.cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(100deg,var(--dor2),var(--dor));color:var(--azul);padding:18px 32px;border-radius:100px;font-weight:800;font-size:16px;text-decoration:none;box-shadow:0 15px 35px rgba(255,213,0,.3);transition:.3s}
+.cta:hover{transform:translateY(-3px);box-shadow:0 20px 45px rgba(255,213,0,.45)}
+.card-visual{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:24px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.logo-box{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.logo-box img{width:64px;height:64px;border-radius:50%;border:2.5px solid var(--dor);object-fit:cover;background:#fff}
+.tit-logo{color:var(--dor);font-weight:800;letter-spacing:4px;font-size:16px;line-height:1}
+.tit-logo small{display:block;color:#fff;letter-spacing:5px;font-size:8px;opacity:.6;margin-top:4px}
+.item{background:rgba(0,18,51,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.item b{color:#fff;font-size:13px}.item span{color:var(--dor);font-weight:700}
+.beneficios{padding:60px 24px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:700px){.beneficios{grid-template-columns:1fr}}
+.ben{background:linear-gradient(135deg,rgba(0,63,136,.5),rgba(0,41,107,.7));border:1px solid rgba(255,213,0,.12);border-radius:20px;padding:20px}
+.ben h4{color:var(--dor);font-size:12px;letter-spacing:2px;margin-bottom:6px}.ben p{color:#b8d4ee;font-size:13px;line-height:1.5}
+.wa{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,.4);z-index:50;text-decoration:none;font-size:28px}
+</style>
 </head>
-<body style="margin:0;background:#00296b;color:white;font-family:Arial;text-align:center">
-<div style="background:#003f88;padding:30px;border-bottom:4px solid #ffd500">
-<img src="logo.png" style="width:120px;height:120px;border-radius:50%;border:4px solid #ffd500;background:white" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1000/1000997.png'">
-<h1 style="color:#ffd500;margin:15px 0 5px;letter-spacing:3px">CREDIMACH</h1>
-<p style="color:#a8c4e5;margin:0">FINANCIERA PREMIUM</p>
+<body>
+<div class="hero">
+<div class="blobs"><div class="blob b1"></div><div class="blob b2"></div></div>
+<div class="container">
+<div>
+<div class="badge-top">⚡ APROBACIÓN EN 10 MINUTOS • SOLO DNI</div>
+<h1>¿Necesitás<br>efectivo <span>hoy?</span></h1>
+<p class="sub">Préstamos en el acto en Machagai. 40% interés fijo. Cuotas semanales o mensuales. Sin vueltas.</p>
+<a href="https://wa.me/5493734517795?text=Hola%20CREDIMACH%2C%20quiero%20un%20pr%C3%A9stamo" class="cta">PEDIR AL 3734 517795 →</a>
+<div style="margin-top:18px;display:flex;gap:18px;color:#6ea1cc;font-size:11px;letter-spacing:1px"><span>✓ SOLO DNI</span><span>✓ EN EL ACTO</span><span>✓ CONFIDENCIAL</span></div>
 </div>
-
-<div style="background:#003f88;margin:20px;padding:25px;border-radius:20px;border:1px solid #00509d">
-<h2 style="color:#ffd500;margin-top:0">¿Necesitás efectivo hoy?</h2>
-<p style="color:#d0e2f5">Préstamos en el acto en Machagai - 40% interés fijo</p>
-<a href="https://wa.me/5493734517795?text=Hola%20CREDIMACH%20quiero%20un%20prestamo" style="background:linear-gradient(90deg,#fdc500,#ffd500);color:#00296b;padding:16px 30px;border-radius:50px;text-decoration:none;font-weight:900;display:inline-block;margin-top:10px;font-size:18px">PEDIR AL 3734517795</a>
+<div class="card-visual">
+<div class="logo-box">
+<img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
+<div class="tit-logo">CREDIMACH<small>FINANCIERA PREMIUM</small></div>
 </div>
-
-<div style="background:#00296b;margin:20px;padding:20px;border-radius:15px;border:1px solid #003f88;text-align:left;color:#b9d1ec">
-<b style="color:#ffd500">💎 Beneficios:</b><br><br>
-<span style="color:#ffd500">●</span> Aprobación en 10 min<br>
-<span style="color:#ffd500">●</span> Solo DNI<br>
-<span style="color:#ffd500">●</span> Cuotas semanales o mensuales
-</div>
-
-<a href="https://wa.me/5493734517795" style="position:fixed;bottom:20px;right:20px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:30px">💬</a>
-</body>
-</html>
+<div class="item"><b>Monto hasta</b><span>$500.000</span></div>
+<div class="item"><b>Interés fijo</b><span>40%</span></div>
+<div class="item"><b>Cuotas</b><span>Semanales / Mensuales</span></div>
+<div class="item"><b>Respuesta</b><span>En 10 min</span></div>
+<div style="margin-top:18px;background:rgba(255,213,0,.1);border:1px dashed var(--dor);border-radius:14px;padding:12px;text-align:center;color:var(--dor);font-size:12px">📍 Solo Machagai - Entrega en mano</div
