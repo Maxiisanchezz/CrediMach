@@ -1,136 +1,30 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CREDIMACH</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,800&display=swap" rel="stylesheet">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#001233">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#001233}
-#login{position:fixed;inset:0;background:#001233;display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px}
-.card{width:100%;max-width:350px;background:#0a1f4d;border:2px solid #ffd500;border-radius:24px;padding:28px 22px 26px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.logoWrap{width:108px;height:108px;border-radius:50%;background:#fff;border:4px solid #ffd500;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:6px}
-.logoWrap img{width:88%;height:88%;object-fit:contain}
-.brand{
-  font-family:'Bodoni Moda', serif;
-  font-weight:800;
-  font-size:33px;
-  letter-spacing:0.21em;
-  color:#ffd500;
-  line-height:1;
-  margin:14px 0 22px 0;
-  text-transform:uppercase;
-  text-shadow: 0 1px 0 #b89a00, 0 2px 0 #a68a00;
-  width:100%;
-  text-align:center;
-  white-space:nowrap;
-}
-.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#001a4d;color:#fff;margin-top:10px;font-size:15px;outline:none;text-align:left}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer}
-#app{display:none;padding:12px 12px 100px}
-.top{background:#00296b;color:#ffd500;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:12px}
-.top b{font-family:'Bodoni Moda',serif;letter-spacing:3px;font-weight:800}
-.box{background:#0a1f4d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;margin-top:12px;color:#fff}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.client{background:rgba(0,0,0,.25);padding:12px;border-radius:12px;margin-top:10px}
-.cHead{display:flex;justify-content:space-between;gap:8px}
-.act{display:flex;gap:6px;margin-top:8px}
-.bSmall{padding:6px 12px;border-radius:10px;border:none;font-weight:800;font-size:11px;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999}
-.mc{width:100%;max-width:380px;background:#0d234f;border:1px solid #ffd500;border-radius:18px;padding:18px;max-height:90vh;overflow:auto}
-.prog{height:5px;background:rgba(255,255,255,.1);border-radius:10px;margin-top:6px;overflow:hidden}
-.prog i{display:block;height:100%;background:#ffd500}/* FONDO EN MOVIMIENTO */
-.moving-bg{position:fixed;inset:0;overflow:hidden;z-index:-1;background:linear-gradient(120deg,#001233,#00296b,#001a4d,#001233);background-size:400% 400%;animation:fondoMovimiento 12s ease infinite}
-.moving-bg span{position:absolute;display:block;width:180px;height:180px;border-radius:50%;filter:blur(25px);opacity:.45;will-change:transform}
-.moving-bg span:nth-child(1){background:#0066ff;top:-80px;left:-80px;animation:bola1 12s ease-in-out infinite alternate}
-.moving-bg span:nth-child(2){background:#ffd500;bottom:-80px;right:-80px;animation:bola2 15s ease-in-out infinite alternate}
-.moving-bg span:nth-child(3){background:#00aaff;top:45%;left:40%;width:120px;height:120px;opacity:.18;animation:bola3 10s ease-in-out infinite alternate}
-.moving-bg span:nth-child(4){background:#ffd500;top:20%;right:15%;width:80px;height:80px;opacity:.22;animation:bola4 8s ease-in-out infinite alternate}
-@keyframes fondoMovimiento{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes bola1{from{transform:translate(0,0) scale(1)}to{transform:translate(55vw,40vh) scale(1.6)}}
-@keyframes bola2{from{transform:translate(0,0) scale(1)}to{transform:translate(-60vw,-45vh) scale(1.5)}}
-@keyframes bola3{from{transform:translate(-20vw,-10vh)}to{transform:translate(30vw,30vh)}}
-@keyframes bola4{from{transform:translate(0,0) scale(1)}to{transform:translate(-25vw,45vh) scale(1.8)}}
-
-/* HACER VISIBLES LAS ANIMACIONES */
-#login{background:rgba(0,18,51,.55)}
-.box{background:rgba(10,31,77,.78);backdrop-filter:blur(10px)}
-.top{background:rgba(0,41,107,.80);backdrop-filter:blur(10px)}
-.card{background:rgba(10,31,77,.85);backdrop-filter:blur(14px)}
-</style>
-
-</head>
-<body><div class="moving-bg"><span></span><span></span><span></span><span></span></div><div id="login"><div class="card">
-<div class="logoWrap"><img src="./logo.png" onerror="this.parentElement.innerHTML='<b style=color:#001233;font-family:Bodoni Moda,serif;font-size:32px>CM</b>'"></div>
-<div class="brand">CREDIMACH</div>
-<input id="pass" class="inp" type="password" placeholder="Clave">
-<button class="btn" onclick="entrar()">ENTRAR</button>
-<div id="err" style="color:#ff8a8a;margin-top:10px;display:none">Clave incorrecta</div>
-</div></div><div id="app">
-<div class="top"><b>CREDIMACH</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
-<div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div>
-<div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div>
-<div class="box" style="text-align:center"><b id="sAtr" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">VENCIDOS</span></div>
-</div>
-<div class="box">
-<div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800;margin-bottom:8px">NUEVO CLIENTE</div>
-<input id="nombre" class="inp" placeholder="Nombre *">
-<div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
-<div class="row"><input id="monto" class="inp" type="number" placeholder="Monto" oninput="calc()"><input id="cuotas" class="inp" type="number" placeholder="Cuotas" oninput="calc()"></div>
-<div id="prev" style="display:none;background:rgba(255,213,0,.08);border:1px dashed #ffd500;border-radius:10px;padding:10px;margin-top:8px;font-size:13px"></div>
-<div class="row"><input id="f1" class="inp" type="text" placeholder="INICIO" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()"><input id="f2" class="inp" type="text" placeholder="VENCE" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"></div>
-<select id="est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
-<button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
-</div>
-<div class="box">
-<div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA</div>
-<input id="bus" class="inp" placeholder="🔍 Buscar..." oninput="render()"><div id="lista" style="margin-top:10px"></div>
-</div>
-</div><div id="modalPago" class="modal" onclick="if(event.target==this)cerrarPago()"><div class="mc">
-<div style="display:flex;justify-content:space-between"><b style="color:#ffd500">REGISTRAR PAGO</b><span onclick="cerrarPago()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<div id="modalInfo" style="margin:12px 0;background:rgba(0,0,0,.3);padding:10px;border-radius:10px;font-size:13px"></div>
-<input id="montoPago" type="number" class="inp" placeholder="Importe"><input id="fechaPago" type="date" class="inp">
-<button class="btn" onclick="confirmarPago(true)">GUARDAR + WHATSAPP</button>
-<button class="btn" style="background:transparent;border:1px solid #ffd500;color:#ffd500" onclick="confirmarPago(false)">SOLO GUARDAR</button>
-</div></div><div id="modalEdit" class="modal" onclick="if(event.target==this)cerrarEdit()"><div class="mc">
-<div style="display:flex;justify-content:space-between"><b style="color:#ffd500">EDITAR CLIENTE</b><span onclick="cerrarEdit()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<input id="e_nombre" class="inp" placeholder="Nombre"><div class="row"><input id="e_dni" class="inp" placeholder="DNI"><input id="e_tel" class="inp" placeholder="WhatsApp"></div>
-<div class="row"><input id="e_monto" class="inp" type="number" placeholder="Monto"><input id="e_cuotas" class="inp" type="number" placeholder="Cuotas"></div>
-<div class="row"><input id="e_f1" class="inp" type="date"><input id="e_f2" class="inp" type="date"></div>
-<select id="e_est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
-<button class="btn" onclick="guardarEdit()">GUARDAR CAMBIOS</button>
-</div></div><script>
-var CLAVE="Todocasero.2020";
-function entrar(){var v=document.getElementById('pass').value.trim();if(v===CLAVE||v.toLowerCase().replace(/\./g,'')==='todocasero2020'){localStorage.setItem('log','ok');document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}else{document.getElementById('err').style.display='block';}}
-function salir(){localStorage.removeItem('log');document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';}
-if(localStorage.getItem('log')==='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';}
-function get(){try{return JSON.parse(localStorage.getItem('CREDIMACH_DB')||localStorage.getItem('DB')||'[]')}catch(e){return []}}
-function save(a){localStorage.setItem('CREDIMACH_DB',JSON.stringify(a));localStorage.setItem('DB',JSON.stringify(a));}
-function calc(){var m=parseFloat(document.getElementById('monto').value)||0;var cu=parseFloat(document.getElementById('cuotas').value)||0;if(m>0){var t=m*1.4;var q=cu>0?Math.round(t/cu):t;var p=document.getElementById('prev');p.style.display='block';p.innerHTML='Total <b style=color:#ffd500>$'+t.toLocaleString('es-AR')+'</b> | Cuota <b style=color:#ffd500>$'+q.toLocaleString('es-AR')+'</b>';}var ini=document.getElementById('f1').value;if(ini&&cu>0){var sp=ini.split('-');if(sp.length===3){var dt=new Date(sp[0],sp[1]-1,sp[2]);dt.setMonth(dt.getMonth()+cu);document.getElementById('f2').value=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);if(document.getElementById('f2').type==='text')document.getElementById('f2').type='date';}}}
-function guardar(){var n=document.getElementById('nombre').value.trim();var mo=parseFloat(document.getElementById('monto').value)||0;if(!n||mo<=0){alert('Falta nombre o monto');return;}var cu=parseFloat(document.getElementById('cuotas').value)||0;var tot=mo*1.4;var cuM=cu>0?tot/cu:tot;var o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:mo,cuotas:cu,total:tot,cuotaM:cuM,f1:document.getElementById('f1').value,f2:document.getElementById('f2').value,est:document.getElementById('est').value,pagado:0,pagos:[]};var a=get();a.push(o);save(a);document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('monto').value='';document.getElementById('cuotas').value='';document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f1').type='text';document.getElementById('f2').type='text';document.getElementById('prev').style.display='none';render();}
-function fmt(f){if(!f)return new Date().toLocaleDateString('es-AR');var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
-function dias(f){if(!f)return{txt:'Sin fecha',n:9999};var h=new Date();h.setHours(0,0,0,0);var p=f.split('-');var fin=new Date(p[0],p[1]-1,p[2]);var d=Math.ceil((fin-h)/86400000);if(d<0)return{txt:'VENCIDO',n:d};if(d==0)return{txt:'HOY',n:0};return{txt:d+' dias',n:d};}
-var cliSel=null;
-function abrirPago(id){var a=get();for(var i=0;i<a.length;i++)if(a[i].id==id)cliSel=a[i];document.getElementById('modalInfo').innerHTML='<b>'+cliSel.nombre+'</b><br>Total $'+cliSel.total.toLocaleString('es-AR');document.getElementById('fechaPago').valueAsDate=new Date();document.getElementById('montoPago').value=cliSel.cuotaM?Math.round(cliSel.cuotaM):'';document.getElementById('modalPago').style.display='flex';}
-function cerrarPago(){document.getElementById('modalPago').style.display='none';}
-function confirmarPago(conWA){
-  var mo=parseFloat(document.getElementById('montoPago').value)||0;if(mo<=0){alert('Monto');return;}
-  var fe=document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10);
-  var a=get();var idx=a.findIndex(x=>x.id==cliSel.id);if(idx==-1)return;
-  if(!a[idx].pagos)a[idx].pagos=[];a[idx].pagos.push({monto:mo,fecha:fe});a[idx].pagado=(a[idx].pagado||0)+mo;if(a[idx].pagado>=a[idx].total)a[idx].est='Finalizado';
-  save(a);cerrarPago();render();
-  if(conWA){var tel=(a[idx].tel||'').replace(/[^0-9]/g,'');if(tel){if(tel.indexOf('54')!=0)tel='549'+tel;var pagado=a[idx].pagado;var saldo=a[idx].total-pagado;if(saldo<0)saldo=0;
-  var msg="*CREDIMACH - COMPROBANTE DE PAGO* %0A%0A";msg+="Estimado/a *"+encodeURIComponent(a[idx].nombre)+"*, hemos registrado su pago correctamente.%0A%0A";msg+="💵 *Importe abonado:* $"+mo.toLocaleString('es-AR')+"%0A";msg+="📅 *Fecha de pago:* "+fmt(fe)+"%0A";msg+="📊 *Total del crédito:* $"+a[idx].total.toLocaleString('es-AR')+"%0A";msg+="✅ *Total abonado:* $"+pagado.toLocaleString('es-AR')+"%0A";msg+="💰 *Saldo pendiente:* $"+saldo.toLocaleString('es-AR')+"%0A%0A";msg+="Gracias por su compromiso.%0AQuedamos a su disposición.%0A%0A";msg+="*CREDIMACH*";
-  window.open('https://wa.me/'+tel+'?text='+msg,'_blank');}}
-}
-var editId=null;
-function abrirEdit(id){var x=get().find(z=>z.id==id);if(!x)return;editId=id;
-document.getElementById('e_nombre').value=x.nombre;document.getElementById('e_dni').value=x.dni||'';document.getElementById('e_tel').value=x.tel||'';document.getElementById('e_monto').value=x.monto;document.getElementById('e_cuotas').value=x.cuotas;document.getElementById('e_f1').value=x.f1||'';document.getElementById('e_f2').value=x.f2||'';document.getElementById('e_est').value=x.est;
-document.getElementById('modalEdit').style.display='flex';}
-function cerrarEdit(){document.getElementById('modalEdit').style.display='none';}
-function guardarEdit(){var a=get();var idx=a.findIndex(x=>x.id==editId);if(idx==-1)return;var mo=parseFloat(document.getElementById('e_monto').value)||0;var cu=parseFloat(document.getElementById('e_cuotas').value)||0;var tot=mo*1.4;a[idx].nombre=document.getElementById('e_nombre').value.trim();a[idx].dni=document.getElementById('e_dni').value;a[idx].tel=document.getElementById('e_tel').value;a[idx].monto=mo;a[idx].cuotas=cu;a[idx].total=tot;a[idx].cuotaM=cu>0?tot/cu:tot;a[idx].f1=document.getElementById('e_f1').value;a[idx].f2=document.getElementById('e_f2').value;a[idx].est=document.getElementById('e_est').value;save(a);cerrarEdit();render();}
-function render(){var a=get();var tot=0;for(var i=0;i<a.length;i++)tot+=a[i].monto||0;document.getElementById('sTotal').innerText='$'+tot.toLocaleString('es-AR');document.getElementById('sCli').innerText=a.length;var atr=0;for(var i=0;i<a.length;i++){var dd=dias(a[i].f2);if(dd.n<0&&(a[i].pagado||0)<a[i].total)atr++;}document.getElementById('sAtr').innerText=atr;var b=(document.getElementById('bus').value||'').toLowerCase();var h='';for(var i=0;i<a.length;i++){var x=a[i];var texto=(x.nombre+' '+(x.dni||'')+' '+(x.tel||'')).toLowerCase();if(b&&texto.indexOf(b)<0)continue;var d=dias(x.f2);var sal=x.total-(x.pagado||0);var porc=x.total>0?Math.round((x.pagado||0)/x.total*100):0;h+='<div class=client><div class=cHead><div><b>'+x.nombre+'</b><div style="font-size:11px;color:#8fb8de">'+(x.dni||'')+' '+(x.tel||'')+'</div><div style="font-size:12px">$'+x.monto.toLocaleString('es-AR')+' | Saldo $'+sal.toLocaleString('es-AR')+'</div><div class=prog><i style="width:'+porc+'%"></i></div><div style="font-size:11px;margin-top:4px;color:#ffd500">'+d.txt+'</div></div><div style="color:#ff8a8a;cursor:pointer" onclick="if(confirm(\'Borrar?\')){var a=get().filter(z=>z.id!='+x.id+');save(a);render();}">✕</div></div><div class=act><button class=bSmall style="background:#ffd500;color:#001233" onclick="abrirPago('+x.id+')">PAGO</button><button class=bSmall style="background:transparent;border:1px solid #fff;color:#fff" onclick="abrirEdit('+x.id+')">✏️ EDITAR</button></div></div>';}document.getElementById('lista').innerHTML=h||'<div style="color:#8fb8de;text-align:center;padding:20px">Sin clientes</div>';}
-render();
-</script></body>
-                   </html>
+body{background:#001233;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;background:linear-gradient(120deg,#001233,#00296b,#003080,#001233);background-size:300% 300%;animation:m 12s ease infinite}
+@keyframes m{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.stars{position:fixed;inset:0;z-index:1;pointer-events:none}
+.dot{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:tw 2.5s infinite alternate}
+.dot.gold{background:#ffd500;box-shadow:0 0 4px #ffd500}
+@keyframes tw{0%{opacity:.2}100%{opacity:1}}
+#login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;padding:18px}
+.card{width:100%;max-width:360px;background:#0a1f4d;border:2px solid #ffd500;border-radius:24px;padding:24px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.logoWrap{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd500;margin:0 auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logoWrap img{width:90%;height:90%;object-fit:contain}
+.brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#ffd500;margin:16px 0 20px;letter-spacing:1px;text-align:center}
+.inp{width:100%;padding:13px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:#001a4d;color:#fff;margin-top:8px;font-size:15px}
+.btn{width:100%;padding:13px;border-radius:10px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:10px;font-size:16px;cursor:pointer}
+#app{display:none;padding:12px 12px 100px;position:relative;z-index:5}
+.top{background:#00296b;color:#ffd500;padding:12px 14px;display:flex;justify
