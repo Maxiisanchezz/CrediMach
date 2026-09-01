@@ -20,37 +20,52 @@ body{background:#001233}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .lab{font-size:9px;letter-spacing:2px;color:#8fb8de;margin:8px 0 2px 4px;display:block}
 .client{background:rgba(0,0,0,.25);padding:12px;border-radius:12px;margin-top:10px;display:flex;justify-content:space-between;gap:8px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999}
-.mc{width:100%;max-width:360px;background:#0d234f;border:1px solid #ffd500;border-radius:18px;padding:18px}
+.badge{padding:4px 10px;border-radius:12px;font-size:10px;font-weight:800;border:1px solid}
+.ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.12)}
 .prog{height:5px;background:rgba(255,255,255,.1);border-radius:10px;margin-top:6px;overflow:hidden}
 .prog i{display:block;height:100%;background:#ffd500}
 </style>
 </head>
 <body>
-<div id="login"><div class="card">
-<img src="./logo.png" onerror="this.style.display='none'" style="width:88px;height:88px;border-radius:50%;border:3px solid #ffd500;background:#fff;padding:6px;object-fit:contain">
-<div class="brand">CREDIMACH</div>
-<input id="pass" class="inp" type="password" placeholder="Clave" style="margin-top:18px">
-<button class="btn" onclick="entrar()">ENTRAR</button>
-<div id="err" style="color:#ff8a8a;margin-top:10px;display:none;font-size:13px">Clave incorrecta</div>
-</div></div>
+<div id="login">
+  <div class="card">
+    <img src="./logo.png" onerror="this.style.display='none'" style="width:88px;height:88px;border-radius:50%;border:3px solid #ffd500;background:#fff;padding:6px;object-fit:contain">
+    <div class="brand">CREDIMACH</div>
+    <input id="pass" class="inp" type="password" placeholder="Clave" style="margin-top:18px">
+    <button class="btn" onclick="entrar()">ENTRAR</button>
+    <div id="err" style="color:#ff8a8a;margin-top:10px;display:none;font-size:13px">Clave incorrecta</div>
+  </div>
+</div>
 <div id="app">
-<div class="top"><b>CREDIMACH</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px"><div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block;font-size:18px">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div><div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block;font-size:18px">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div><div class="box" style="text-align:center"><b id="sAtr" style="color:#ffd500;display:block;font-size:18px">0</b><span style="font-size:10px;color:#8fb8de">VENCIDOS</span></div></div>
-<div class="box">
-<div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800;margin-bottom:8px">NUEVO CLIENTE</div>
-<input id="nombre" class="inp" placeholder="Nombre *">
-<div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
-<div class="row"><input id="monto" class="inp" type="number" placeholder="Monto" oninput="calc()"><input id="cuotas" class="inp" type="number" placeholder="Cuotas" oninput="calc()"></div>
-<div id="prev" style="display:none;background:rgba(255,213,0,.08);border:1px dashed #ffd500;border-radius:10px;padding:10px;margin-top:8px;font-size:13px"></div>
-<span class="lab">FECHA</span>
-<div class="row"><input id="f1" class="inp" type="text" placeholder="INICIO" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()"><input id="f2" class="inp" type="text" placeholder="VENCE" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"></div>
-<select id="est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
-<button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
-<div id="ok" style="display:none;background:#00ff88;color:#001233;padding:10px;border-radius:10px;margin-top:10px;text-align:center;font-weight:900">✅ GUARDADO</div>
+  <div class="top"><b>CREDIMACH</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px"><div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block;font-size:18px">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div><div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block;font-size:18px">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div><div class="box" style="text-align:center"><b id="sAtr" style="color:#ffd500;display:block;font-size:18px">0</b><span style="font-size:10px;color:#8fb8de">VENCIDOS</span></div></div>
+  <div class="box">
+    <div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800;margin-bottom:8px">NUEVO CLIENTE</div>
+    <input id="nombre" class="inp" placeholder="Nombre *">
+    <div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
+    <div class="row"><input id="monto" class="inp" type="number" placeholder="Monto" oninput="calc()"><input id="cuotas" class="inp" type="number" placeholder="Cuotas" oninput="calc()"></div>
+    <div id="prev" style="display:none;background:rgba(255,213,0,.08);border:1px dashed #ffd500;border-radius:10px;padding:10px;margin-top:8px;font-size:13px"></div>
+    <span class="lab">FECHA</span>
+    <div class="row"><input id="f1" class="inp" type="text" placeholder="INICIO" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()"><input id="f2" class="inp" type="text" placeholder="VENCE" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"></div>
+    <select id="est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
+    <button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
+    <div id="ok" style="display:none;background:#00ff88;color:#001233;padding:10px;border-radius:10px;margin-top:10px;text-align:center;font-weight:900">✅ GUARDADO</div>
+  </div>
+  <div class="box"><div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA</div><input id="bus" class="inp" placeholder="Buscar..." oninput="render()"><div id="lista" style="margin-top:10px"></div></div>
 </div>
-<div class="box"><div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA</div><input id="bus" class="inp" placeholder="Buscar..." oninput="render()"><div id="lista" style="margin-top:10px"></div></div>
-</div>
-<div id="modalPago" class="modal" onclick="if(event.target==this)cerrar()"><div class="mc">
-<div style="display:flex;justify-content:space-between"><b style="color:#ffd500">REGISTRAR PAGO</b><span onclick="cerrar()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<div id="modalInfo" style="margin:12px 0
+<script>
+var CLAVE="Todocasero.2020";
+function entrar(){var v=document.getElementById('pass').value.trim();if(v===CLAVE||v.toLowerCase().replace(/\./g,'')==='todocasero2020'){localStorage.setItem('log','ok');document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}else{document.getElementById('err').style.display='block';}}
+function salir(){localStorage.removeItem('log');document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';}
+if(localStorage.getItem('log')==='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';}
+function get(){try{return JSON.parse(localStorage.getItem('CREDIMACH_DB')||localStorage.getItem('DB')||'[]')}catch(e){return []}}
+function save(a){localStorage.setItem('CREDIMACH_DB',JSON.stringify(a));localStorage.setItem('DB',JSON.stringify(a));}
+function calc(){var m=parseFloat(document.getElementById('monto').value)||0;var cu=parseFloat(document.getElementById('cuotas').value)||0;if(m>0){var t=m*1.4;var q=cu>0?Math.round(t/cu):t;var p=document.getElementById('prev');p.style.display='block';p.innerHTML='Total <b style=color:#ffd500>$'+t.toLocaleString('es-AR')+'</b> | Cuota <b style=color:#ffd500>$'+q.toLocaleString('es-AR')+'</b>';}var ini=document.getElementById('f1').value;if(ini&&cu>0){var sp=ini.split('-');if(sp.length===3){var dt=new Date(sp[0],sp[1]-1,sp[2]);dt.setMonth(dt.getMonth()+cu);document.getElementById('f2').value=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);if(document.getElementById('f2').type==='text')document.getElementById('f2').type='date';}}}
+function guardar(){var n=document.getElementById('nombre').value.trim();var mo=parseFloat(document.getElementById('monto').value)||0;if(!n||mo<=0){alert('Falta nombre o monto');return;}var cu=parseFloat(document.getElementById('cuotas').value)||0;var tot=mo*1.4;var cuM=cu>0?tot/cu:tot;var o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:mo,cuotas:cu,total:tot,cuotaM:cuM,f1:document.getElementById('f1').value,f2:document.getElementById('f2').value,est:document.getElementById('est').value,pagado:0};var a=get();a.push(o);save(a);document.getElementById('ok').style.display='block';setTimeout(function(){document.getElementById('ok').style.display='none'},1500);document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('monto').value='';document.getElementById('cuotas').value='';document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f1').type='text';document.getElementById('f2').type='text';document.getElementById('prev').style.display='none';render();}
+function dias(f){if(!f)return{txt:'Sin fecha',n:9999};var h=new Date();h.setHours(0,0,0,0);var p=f.split('-');var fin=new Date(p[0],p[1]-1,p[2]);var d=Math.ceil((fin-h)/86400000);if(d<0)return{txt:'VENCIDO',n:d};if(d==0)return{txt:'HOY',n:0};return{txt:d+' dias',n:d};}
+function render(){var a=get();var tot=0;for(var i=0;i<a.length;i++)tot+=a[i].monto||0;document.getElementById('sTotal').innerText='$'+tot.toLocaleString('es-AR');document.getElementById('sCli').innerText=a.length;var atr=0;for(var i=0;i<a.length;i++){var dd=dias(a[i].f2);if(dd.n<0)atr++;}document.getElementById('sAtr').innerText=atr;var b=(document.getElementById('bus').value||'').toLowerCase();var h='';for(var i=0;i<a.length;i++){var x=a[i];if(b&&x.nombre.toLowerCase().indexOf(b)<0)continue;var d=dias(x.f2);var sal=x.total-(x.pagado||0);var porc=x.total>0?Math.round((x.pagado||0)/x.total*100):0;h+='<div class=client><div><b>'+x.nombre+'</b><div style="font-size:12px;color:#8fb8de">$'+x.monto.toLocaleString('es-AR')+' | Saldo $'+sal.toLocaleString('es-AR')+'</div><div class=prog><i style="width:'+porc+'%"></i></div><div style="font-size:11px;margin-top:4px;color:#ffd500">'+d.txt+'</div></div><div style="color:#ff8a8a;cursor:pointer;font-size:12px" onclick="borrar('+x.id+')">BORRAR</div></div>';}document.getElementById('lista').innerHTML=h||'';}
+function borrar(id){if(confirm('Borrar?')){var a=get().filter(function(x){return x.id!=id});save(a);render();}}
+render();
+</script>
+</body>
+</html>
