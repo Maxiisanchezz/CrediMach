@@ -34,7 +34,6 @@ input,select,textarea{width:100%;background:rgba(0,18,51,.8);border:1px solid rg
 <div style="font-size:8px;letter-spacing:4px;color:#7fb0e0;margin-bottom:16px">PRIVATE APP</div>
 <input type="password" id="pass" placeholder="Clave privada" onkeydown="if(event.key==='Enter') entrar()">
 <button class="btn" onclick="entrar()">ENTRAR A MI PANEL</button>
-<div style="font-size:10px;color:#5a8bc0;margin-top:10px">Clave: Todocasero.2020</div>
 </div>
 </div>
 <div id="app" style="display:none">
@@ -51,14 +50,14 @@ const KEY="Todocasero.2020";
 if(localStorage.getItem('log')=='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render()}
 function entrar(){
 let p=document.getElementById('pass').value.trim();
-console.log("Intentando:",p);
 if(p===KEY){
 localStorage.setItem('log','ok');
 document.getElementById('login').style.display='none';
 document.getElementById('app').style.display='block';
 render();
 }else{
-alert("Clave incorrecta. Vos escribiste: ["+p+"]\nLa clave es: Todocasero.2020\nFijate mayúscula en T y el punto");
+alert("Clave incorrecta");
+document.getElementById('pass').value="";
 }
 }
 function calc(){let m=parseFloat(document.getElementById('monto').value)||0,c=parseFloat(document.getElementById('cuotas').value)||1;let i=m*0.4,t=m+i;document.getElementById('cRes').style.display='block';document.getElementById('cInt').innerText='$'+i.toLocaleString();document.getElementById('cTot').innerText='$'+t.toLocaleString();document.getElementById('cCuo').innerText='$'+(t/c).toLocaleString()}
