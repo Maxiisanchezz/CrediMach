@@ -5,77 +5,80 @@
 <title>CREDIMACH • Private</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--azul:#00296b;--azul2:#003f88;--dor:#ffd500;--dor2:#fdc500;--bg:#001233}
+:root{--dor:#ffd500;--bg:#001233}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Space Grotesk',sans-serif}
-body{background:var(--bg);color:#fff;min-height:100vh}
+body{background:var(--bg);color:#fff}
 #login{position:fixed;inset:0;z-index:99;background:radial-gradient(130% 130% at 10% 10%,#003f88 0%,#00296b 35%,#001233 75%);display:flex;align-items:center;justify-content:center;padding:20px}
-.login-card{width:100%;max-width:390px;background:rgba(255,255,255,.06);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,213,0,.25);border-radius:34px;padding:38px 28px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.12)}
-.login-card img{width:88px;height:88px;border-radius:50%;border:3px solid var(--dor);background:#fff;box-shadow:0 0 0 8px rgba(255,213,0,.12)}
-.login-title{margin-top:14px;color:var(--dor);font-weight:800;letter-spacing:7px;font-size:20px}
-.login-sub{font-size:8px;letter-spacing:5px;color:#7fb0e0;margin-bottom:22px;margin-top:4px}
-.input-lindo{width:100%;background:rgba(0,18,51,.88);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:16px 18px;color:#fff;margin-top:11px;outline:none;font-size:14px;transition:.25s;letter-spacing:.3px}
-.input-lindo:focus{border-color:var(--dor);box-shadow:0 0 0 4px rgba(255,213,0,.15);background:rgba(0,18,51,.95)}
-.btn-lindo{width:100%;background:linear-gradient(100deg,var(--dor2),var(--dor));color:var(--bg);padding:16px;border-radius:18px;font-weight:800;letter-spacing:3px;border:none;margin-top:16px;cursor:pointer;box-shadow:0 12px 24px rgba(255,213,0,.3);font-size:13px}
-.btn-ghost{width:100%;background:transparent;border:1px dashed rgba(255,213,0,.35);color:var(--dor);padding:12px;border-radius:14px;font-size:10px;letter-spacing:2px;margin-top:12px;cursor:pointer;opacity:.8}
-#app{display:none;min-height:100vh;background:radial-gradient(100% 80% at 0% 0%,rgba(0,63,136,.25),transparent)}
-.top{position:sticky;top:0;z-index:20;background:rgba(0,41,107,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,213,0,.18)}
+.login-card{width:100%;max-width:390px;background:rgba(255,255,255,.06);backdrop-filter:blur(40px);border:1px solid rgba(255,213,0,.25);border-radius:34px;padding:38px 28px;text-align:center}
+.input-lindo{width:100%;background:rgba(0,18,51,.88);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:15px 18px;color:#fff;margin-top:11px;outline:none;font-size:14px}
+.btn-lindo{width:100%;background:linear-gradient(100deg,#fdc500,#ffd500);color:#001233;padding:16px;border-radius:18px;font-weight:800;letter-spacing:2px;border:none;margin-top:16px;cursor:pointer}
+.btn-ghost{width:100%;background:transparent;border:1px dashed rgba(255,213,0,.35);color:#ffd500;padding:12px;border-radius:14px;font-size:10px;letter-spacing:2px;margin-top:12px;cursor:pointer}
+#app{display:none}.top{position:sticky;top:0;z-index:20;background:rgba(0,41,107,.9);backdrop-filter:blur(24px);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,213,0,.18)}
 .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:16px}
-.s{background:linear-gradient(180deg,rgba(0,63,136,.75),rgba(0,41,107,.65));border:1px solid rgba(255,213,0,.16);border-radius:22px;padding:16px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.s b{color:var(--dor);font-size:22px;display:block;font-weight:800;letter-spacing:1px}.s i{font-size:8px;color:#8fb8de;font-style:normal;letter-spacing:2.5px;margin-top:2px;display:block}
-.wrap{padding:0 16px 100px}
-.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:26px;padding:22px;margin-top:16px;backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.box h3{font-size:10px;letter-spacing:4.5px;color:var(--dor);margin-bottom:16px;font-weight:800}
+.s{background:linear-gradient(180deg,rgba(0,63,136,.75),rgba(0,41,107,.65));border:1px solid rgba(255,213,0,.16);border-radius:22px;padding:16px;text-align:center}
+.s b{color:var(--dor);font-size:18px;display:block}.s i{font-size:8px;color:#8fb8de;font-style:normal;letter-spacing:2px}
+.wrap{padding:0 16px 100px}.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:26px;padding:22px;margin-top:16px}
+.box h3{font-size:10px;letter-spacing:4px;color:var(--dor);margin-bottom:16px;font-weight:800}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.client{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;gap:12px}
-.badge{padding:5px 11px;border-radius:22px;font-size:9px;font-weight:800;border:1px solid;letter-spacing:1px;height:fit-content}
+.client{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;gap:12px}
+.badge{padding:5px 11px;border-radius:22px;font-size:9px;font-weight:800;border:1px solid;height:fit-content}
 .ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.12)}.mal{color:#ff6b6b;border-color:#ff6b6b;background:rgba(255,80,80,.12)}.fin{color:var(--dor);border-color:var(--dor);background:rgba(255,213,0,.14)}
 .label{font-size:8px;letter-spacing:3px;color:#8fb8de;margin-top:16px;margin-bottom:4px;display:block;font-weight:700}
-.dias{font-size:11px;font-weight:800;padding:6px 10px;border-radius:10px;display:inline-block;margin-top:8px;letter-spacing:.5px}
+.dias{font-size:11px;font-weight:800;padding:6px 10px;border-radius:10px;display:inline-block;margin-top:8px}
 .d-verde{background:rgba(0,255,136,.14);color:#00ff88;border:1px solid rgba(0,255,136,.4)}
 .d-ama{background:rgba(255,213,0,.14);color:#ffd500;border:1px solid rgba(255,213,0,.45)}
-.d-rojo{background:rgba(255,107,107,.15);color:#ff6b6b;border:1px solid rgba(255,107,107,.5);animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+.d-rojo{background:rgba(255,107,107,.15);color:#ff6b6b;border:1px solid rgba(255,107,107,.5)}
+.datos-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,18,51,.6);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:10px;margin-top:10px}
+.datos-grid span{color:#8fb8de;font-size:9px;display:block}.datos-grid b{color:#fff;font-size:12px}
+.wa-btn{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:8px 12px;border-radius:20px;font-size:10px;font-weight:800;text-decoration:none;margin-top:8px;border:none;cursor:pointer}
+.btn-pago{background:rgba(255,213,0,.15);border:1px solid #ffd500;color:#ffd500;padding:8px 12px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer;margin-top:8px}
+.prog{height:8px;background:rgba(255,255,255,.1);border-radius:10px;margin-top:10px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#00ff88,#ffd500);transition:.3s}
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-card{width:100%;max-width:360px;background:#0d234f;border:1px solid rgba(255,213,0,.3);border-radius:24px;padding:22px}
 </style>
 </head>
 <body>
 <div id="login">
 <div class="login-card">
-<img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
-<div class="login-title">CREDIMACH</div>
-<div class="login-sub">PRIVATE EDITION</div>
+<img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'" style="width:88px;height:88px;border-radius:50%;border:3px solid #ffd500;background:#fff">
+<div style="margin-top:14px;color:#ffd500;font-weight:800;letter-spacing:7px;font-size:20px">CREDIMACH</div>
+<div style="font-size:8px;letter-spacing:5px;color:#7fb0e0;margin-bottom:22px">PRIVATE EDITION</div>
 <input type="text" id="pass" class="input-lindo" placeholder="Tu clave privada" onkeydown="if(event.key==='Enter') entrar()">
-<button class="btn-lindo" onclick="entrar()">ENTRAR A MI PANEL</button>
-<button class="btn-ghost" onclick="forzar()">¿NO ENTRA? TOCÁ ACÁ PARA ENTRAR</button>
+<button class="btn-lindo" onclick="entrar()">ENTRAR</button>
+<button class="btn-ghost" onclick="forzar()">¿NO ENTRA? TOCÁ ACÁ</button>
 </div>
 </div>
 
 <div id="app">
-<div class="top">
-<div style="display:flex;gap:13px;align-items:center">
-<img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'" style="width:44px;height:44px;border-radius:50%;border:2px solid var(--dor);background:#fff">
-<div><div style="color:var(--dor);font-weight:800;letter-spacing:4px;font-size:12px">CREDIMACH</div><div style="font-size:7px;letter-spacing:3px;color:#8fb8de">CONTROL PRIVADO</div></div>
-</div>
-<button onclick="localStorage.clear();location.reload()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,213,0,.25);color:var(--dor);padding:8px 16px;border-radius:22px;font-size:10px;letter-spacing:2px">SALIR</button>
-</div>
-
-<div class="stats"><div class="s"><b id="sTotal">$0</b><i>TOTAL PRESTADO</i></div><div class="s"><b id="sCli">0</b><i>CLIENTES</i></div><div class="s"><b id="sAtr">0</b><i>VENCIDOS</i></div></div>
-
+<div class="top"><div style="display:flex;gap:13px;align-items:center"><img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'" style="width:44px;height:44px;border-radius:50%;border:2px solid #ffd500;background:#fff"><div><div style="color:#ffd500;font-weight:800;letter-spacing:4px;font-size:12px">CREDIMACH</div><div style="font-size:7px;letter-spacing:3px;color:#8fb8de">CONTROL PRIVADO</div></div></div><button onclick="localStorage.clear();location.reload()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,213,0,.25);color:#ffd500;padding:8px 16px;border-radius:22px;font-size:10px">SALIR</button></div>
+<div class="stats"><div class="s"><b id="sTotal">$0</b><i>PRESTADO</i></div><div class="s"><b id="sCli">0</b><i>CLIENTES</i></div><div class="s"><b id="sAtr">0</b><i>VENCIDOS</i></div></div>
 <div class="wrap">
-<div class="box"><h3>CALCULADORA 40%</h3><div class="row2"><input id="monto" class="input-lindo" style="margin:0" type="number" placeholder="Monto"><input id="cuotas" class="input-lindo" style="margin:0" type="number" placeholder="Cuotas"></div><button class="btn-lindo" onclick="calc()">CALCULAR INTERÉS</button><div id="cRes" style="display:none;margin-top:16px;background:rgba(0,18,51,.75);border:1px dashed var(--dor);border-radius:18px;padding:16px;font-size:13px;line-height:1.8"></div></div>
-
 <div class="box"><h3>NUEVO CLIENTE</h3>
 <input id="nombre" class="input-lindo" placeholder="Nombre completo *">
-<div class="row2"><input id="dni" class="input-lindo" placeholder="DNI"><input id="tel" class="input-lindo" placeholder="Teléfono"></div>
-<div class="row2"><input id="cMonto" class="input-lindo" type="number" placeholder="Monto dado"><input id="cCuo2" class="input-lindo" type="number" placeholder="Cuotas" oninput="autoFin()"></div>
-<span class="label">📅 FECHA INICIO DEL CRÉDITO</span><input id="fechaInicio" class="input-lindo" style="margin-top:4px" type="date" oninput="autoFin()">
-<span class="label">🏁 FECHA FINALIZACIÓN (AUTOMÁTICA)</span><input id="fechaFin" class="input-lindo" style="margin-top:4px" type="date">
+<div class="row2"><input id="dni" class="input-lindo" placeholder="DNI"><input id="tel" class="input-lindo" placeholder="WhatsApp Ej: 385..."></div>
+<div class="row2"><input id="cMonto" class="input-lindo" type="number" placeholder="Monto que diste" oninput="autoCalc()"><input id="cCuo2" class="input-lindo" type="number" placeholder="Cuotas" oninput="autoCalc()"></div>
+<div id="preview" style="display:none;background:rgba(0,18,51,.8);border:1px dashed #ffd500;border-radius:16px;padding:14px;margin-top:12px;font-size:12px;line-height:1.7"></div>
+<span class="label">📅 FECHA INICIO</span><input id="fechaInicio" class="input-lindo" style="margin-top:4px" type="date" oninput="autoCalc()">
+<span class="label">🏁 FECHA FIN</span><input id="fechaFin" class="input-lindo" style="margin-top:4px" type="date">
 <select id="est" class="input-lindo"><option>Al día</option><option>Atrasado</option><option>Finalizado</option></select>
-<textarea id="nota" class="input-lindo" placeholder="Notas privadas..." style="min-height:65px;resize:none"></textarea>
+<textarea id="nota" class="input-lindo" placeholder="Notas..." style="min-height:60px;resize:none"></textarea>
 <button class="btn-lindo" onclick="guardar()">GUARDAR CLIENTE</button>
-<div id="msgOk" style="display:none;background:#00ff88;color:#001233;padding:12px;border-radius:14px;margin-top:12px;text-align:center;font-weight:800;font-size:12px;letter-spacing:1px">✓ CLIENTE GUARDADO</div>
+<div id="msgOk" style="display:none;background:#00ff88;color:#001233;padding:12px;border-radius:14px;margin-top:12px;text-align:center;font-weight:800">✓ GUARDADO</div>
+</div>
+<div class="box"><h3>CARTERA</h3><input id="bus" class="input-lindo" style="margin:0 0 12px 0" oninput="render()" placeholder="🔍 Buscar..."><div id="lista"></div></div>
+</div>
 </div>
 
-<div class="box"><h3>CARTERA DE CLIENTES</h3><input id="bus" class="input-lindo" style="margin:0 0 12px 0" oninput="render()" placeholder="🔍 Buscar por nombre o DNI..."><div id="lista"></div></div>
+<!-- MODAL PAGO -->
+<div id="modalPago" class="modal" onclick="if(event.target===this)cerrarModal()">
+<div class="modal-card">
+<div style="display:flex;justify-content:space-between;align-items:center"><h3 style="color:#ffd500;font-size:11px;letter-spacing:3px">REGISTRAR PAGO</h3><span onclick="cerrarModal()" style="cursor:pointer;color:#8fb8de">✕</span></div>
+<div id="modalInfo" style="margin:14px 0;font-size:12px;line-height:1.6;background:rgba(0,0,0,.3);padding:12px;border-radius:14px"></div>
+<input id="montoPago" type="number" class="input-lindo" placeholder="¿Cuánto pagó hoy? Ej: 5000">
+<input id="fechaPago" type="date" class="input-lindo">
+<button class="btn-lindo" onclick="confirmarPago()">GUARDAR PAGO + ENVIAR WHATSAPP</button>
+<button class="btn-ghost" onclick="confirmarPagoSinWA()">SOLO GUARDAR PAGO</button>
 </div>
 </div>
 
@@ -86,24 +89,34 @@ function forzar(){localStorage.setItem('log','ok');mostrar();}
 function mostrar(){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}
 if(localStorage.getItem('log')=='ok') mostrar();
 
-function autoFin(){
+let clienteActual=null;
+function autoCalc(){
+let m=parseFloat(document.getElementById('cMonto').value)||0;
+let c=parseFloat(document.getElementById('cCuo2').value)||0;
+if(m>0){
+let i=m*0.4,t=m+i;
+document.getElementById('preview').style.display='block';
+document.getElementById('preview').innerHTML=`Interés 40%: <b style="color:#ffd500">$${i.toLocaleString('es-AR')}</b><br>Total: $${t.toLocaleString('es-AR')}<br>Cuota: <b style="color:#ffd500">$${c>0?(t/c).toFixed(0):0}</b>`;
+}
 let inicio=document.getElementById('fechaInicio').value;
-let cuotas=parseInt(document.getElementById('cCuo2').value)||0;
-if(inicio && cuotas>0){
-let [y,m,d]=inicio.split('-').map(Number);
-let dt=new Date(y,m-1,d); dt.setMonth(dt.getMonth()+cuotas);
+if(inicio && c>0){
+let [y,mm,d]=inicio.split('-').map(Number);
+let dt=new Date(y,mm-1,d); dt.setMonth(dt.getMonth()+c);
 document.getElementById('fechaFin').value=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
 }
 }
-function calc(){let m=+document.getElementById('monto').value||0,c=+document.getElementById('cuotas').value||1;if(!m)return;let i=m*0.4,t=m+i;let cr=document.getElementById('cRes');cr.style.display='block';cr.innerHTML=`Interés 40%: <b style="color:#ffd500">$${i.toLocaleString('es-AR')}</b><br>Total a devolver: <b>$${t.toLocaleString('es-AR')}</b><br>Cuota mensual: <b style="color:#ffd500;font-size:16px">$${(t/c).toLocaleString('es-AR',{maximumFractionDigits:0})}</b>`;}
+function get(){try{return JSON.parse(localStorage.getItem('CREDIMACH_PAGOS_V1')||localStorage.getItem('CREDIMACH_FINAL_V6')||'[]')}catch(e){return []}}
+function saveAll(a){localStorage.setItem('CREDIMACH_PAGOS_V1',JSON.stringify(a));}
 
-function get(){try{return JSON.parse(localStorage.getItem('CREDIMACH_FINAL')||localStorage.getItem('CREDIMACH_V4')||localStorage.getItem('CREDIMACH_V3')||'[]')}catch(e){return []}}
 function guardar(){
-let n=document.getElementById('nombre').value.trim();if(!n){alert('Poné el nombre');return;}
-let o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:+document.getElementById('cMonto').value||0,cuotas:+document.getElementById('cCuo2').value||0,fechaInicio:document.getElementById('fechaInicio').value,fechaFin:document.getElementById('fechaFin').value,est:document.getElementById('est').value,nota:document.getElementById('nota').value};
-let a=get();a.push(o);localStorage.setItem('CREDIMACH_FINAL',JSON.stringify(a));
-document.getElementById('msgOk').style.display='block';setTimeout(()=>document.getElementById('msgOk').style.display='none',2200);
-['nombre','dni','tel','cMonto','cCuo2','fechaInicio','fechaFin','nota'].forEach(id=>document.getElementById(id).value='');render();
+let n=document.getElementById('nombre').value.trim();if(!n){alert('Nombre');return;}
+let monto=parseFloat(document.getElementById('cMonto').value)||0;
+let cuotas=parseFloat(document.getElementById('cCuo2').value)||0;
+let interes=monto*0.4, total=monto+interes, cuotaM=cuotas>0?total/cuotas:0;
+let o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto,cuotas,interes,total,cuotaM,fechaInicio:document.getElementById('fechaInicio').value,fechaFin:document.getElementById('fechaFin').value,est:document.getElementById('est').value,nota:document.getElementById('nota').value,pagos:[],pagado:0};
+let a=get();a.push(o);saveAll(a);
+document.getElementById('msgOk').style.display='block';setTimeout(()=>document.getElementById('msgOk').style.display='none',2000);
+['nombre','dni','tel','cMonto','cCuo2','fechaInicio','fechaFin','nota'].forEach(id=>document.getElementById(id).value='');document.getElementById('preview').style.display='none';render();
 }
 function fmt(f){if(!f)return '-';let p=f.split('-');return `${p[2]}/${p[1]}/${p[0]}`}
 function diasInfo(f){
@@ -116,27 +129,80 @@ if(diff==0) return {txt:`🔴 VENCE HOY`,cls:'d-rojo',num:0};
 if(diff<=15) return {txt:`🟡 Faltan ${diff} días`,cls:'d-ama',num:diff};
 return {txt:`🟢 Faltan ${diff} días`,cls:'d-verde',num:diff};
 }
+function abrirPago(id){
+let a=get();let c=a.find(x=>x.id===id);
+clienteActual=c;
+let pagado=c.pagado||0; let saldo=(c.total||0)-pagado;
+document.getElementById('modalInfo').innerHTML=`<b style="font-size:14px">${c.nombre}</b><br>DNI: ${c.dni||'-'}<br>Total: $${(c.total||0).toLocaleString('es-AR')} • Pagado: <b style="color:#00ff88">$${pagado.toLocaleString('es-AR')}</b> • Saldo: <b style="color:#ffd500">$${saldo.toLocaleString('es-AR')}</b><br><span style="color:#8fb8de">Cuota: $${(c.cuotaM||0).toFixed(0)}</span>`;
+document.getElementById('fechaPago').valueAsDate=new Date();
+document.getElementById('montoPago').value=c.cuotaM?Math.round(c.cuotaM):'';
+document.getElementById('modalPago').style.display='flex';
+}
+function cerrarModal(){document.getElementById('modalPago').style.display='none';clienteActual=null;}
+
+function confirmarPago(){guardarPago(true)}
+function confirmarPagoSinWA(){guardarPago(false)}
+
+function guardarPago(conWA){
+let monto=parseFloat(document.getElementById('montoPago').value)||0;
+if(monto<=0){alert('Poné el monto que pagó');return;}
+let fecha=document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10);
+let a=get();let idx=a.findIndex(x=>x.id===clienteActual.id);
+if(idx===-1) return;
+let c=a[idx];
+c.pagos=c.pagos||[];
+c.pagos.push({monto,fecha,fechaTxt:fmt(fecha)});
+c.pagado=(c.pagado||0)+monto;
+if(c.pagado>=c.total) c.est='Finalizado';
+saveAll(a);
+cerrarModal();
+render();
+if(conWA) enviarWhatsAppPago(c,monto);
+}
+
+function enviarWhatsAppPago(cliente,montoRecienPagado){
+let pagado=cliente.pagado||0;
+let saldo=(cliente.total||0)-pagado;
+let tel=(cliente.tel||'').replace(/[^0-9]/g,'');
+if(!tel){alert('Este cliente no tiene WhatsApp cargado');return;}
+if(!tel.startsWith('54')) tel='549'+tel;
+let msg=`Hola ${cliente.nombre} 👋%0A✅ *PAGO RECIBIDO - CREDIMACH*%0A%0A💵 *Pagaste:* $${montoRecienPagado.toLocaleString('es-AR')}%0A📅 Fecha: ${fmt(document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10))}%0A%0A📊 *Resumen de tu crédito:*%0A• Total del crédito: $${(cliente.total||0).toLocaleString('es-AR')}%0A• Total pagado hasta ahora: $${pagado.toLocaleString('es-AR')}%0A• *Te queda por pagar: $${saldo.toLocaleString('es-AR')}*%0A%0A${saldo<=0?'🎉 ¡CRÉDITO CANCELADO! Gracias por confiar en CREDIMACH':'Gracias por tu pago, seguimos al día 🙌'}%0A%0A_CREDIMACH - Control Privado_`;
+let url=`https://wa.me/${tel}?text=${msg}`;
+window.open(url,'_blank');
+}
+
 function render(){
-let a=get();let b=(document.getElementById('bus').value||'').toLowerCase();
+let a=get();
+document.getElementById('sTotal').innerText='$'+a.reduce((s,x)=>s+(x.monto||0),0).toLocaleString('es-AR');
+document.getElementById('sCli').innerText=a.length;
+document.getElementById('sAtr').innerText=a.filter(x=>diasInfo(x.fechaFin).num<0 && (x.pagado||0)<(x.total||0)).length;
+let b=(document.getElementById('bus').value||'').toLowerCase();
 let f=a.filter(x=>x.nombre.toLowerCase().includes(b)||(x.dni||'').includes(b));
 f.sort((x,y)=>diasInfo(x.fechaFin).num-diasInfo(y.fechaFin).num);
 let html='';f.forEach(x=>{
-let badge=x.est=='Al día'?'ok':x.est=='Atrasado'?'mal':'fin';
 let d=diasInfo(x.fechaFin);
-html+=`<div class=client><div style="flex:1"><b style="font-size:14px;letter-spacing:.3px">${x.nombre}</b>
-<div style="font-size:11px;color:#8fb8de;margin-top:6px;line-height:1.6">
-DNI: ${x.dni||'-'} • <span style="color:#fff">$${(x.monto||0).toLocaleString('es-AR')}</span> • ${x.cuotas} cuotas<br>
-<span style="color:#ffd500">📅 ${fmt(x.fechaInicio)}</span> <span style="color:#5a8bc0">→</span> <span style="color:#fff">${fmt(x.fechaFin)}</span><br>
-<span class="dias ${d.cls}">${d.txt}</span><br>
-<span style="color:#5a8bc0;font-style:italic">${x.nota||''}</span>
-</div></div><div style="text-align:right"><div class="badge ${badge}">${x.est}</div><div style="font-size:9px;color:#ff8a8a;margin-top:12px;cursor:pointer;letter-spacing:1px" onclick="borrar(${x.id})">ELIMINAR</div></div></div>`;
+let pagado=x.pagado||0; let saldo=(x.total||0)-pagado;
+let porc=x.total>0?Math.min(100,Math.round(pagado/x.total*100)):0;
+let badge=x.est=='Al día'?'ok':x.est=='Atrasado'?'mal':'fin';
+html+=`<div class=client><div style="flex:1"><b style="font-size:14px">${x.nombre}</b>
+<div style="font-size:11px;color:#8fb8de;margin-top:4px">DNI:${x.dni||'-'} • WA:${x.tel||'-'}</div>
+<div class="datos-grid">
+<div><span>DADO</span><b>$${(x.monto||0).toLocaleString('es-AR')}</b></div>
+<div><span>TOTAL</span><b>$${(x.total||0).toLocaleString('es-AR')}</b></div>
+<div><span>PAGADO</span><b style="color:#00ff88">$${pagado.toLocaleString('es-AR')}</b></div>
+<div><span>SALDO</span><b style="color:#ffd500">$${saldo.toLocaleString('es-AR')}</b></div>
+</div>
+<div class="prog"><i style="width:${porc}%"></i></div>
+<div style="font-size:10px;color:#8fb8de;margin-top:4px">${porc}% pagado • ${x.pagos?x.pagos.length:0} pagos</div>
+<div style="font-size:11px;margin-top:6px">📅 ${fmt(x.fechaInicio)} → ${fmt(x.fechaFin)} • <span class="${d.cls==='d-rojo'?'color:#ff6b6b':d.cls==='d-ama'?'color:#ffd500':'color:#00ff88'}" style="font-weight:800">${d.txt}</span></div>
+<button class="btn-pago" onclick="abrirPago(${x.id})">💰 REGISTRAR PAGO</button>
+${pagado>0?`<button class="wa-btn" onclick='enviarWhatsAppPago(${JSON.stringify(x).replace(/'/g,"&#39;")}, ${x.pagos&&x.pagos.length?x.pagos[x.pagos.length-1].monto:0})'>💬 Reenviar último comprobante</button>`:''}
+<div style="font-size:11px;color:#5a8bc0;margin-top:8px">${(x.pagos||[]).slice(-3).reverse().map(p=>`• ${p.fechaTxt}: $${p.monto.toLocaleString('es-AR')}`).join('<br>')}</div>
+</div><div style="text-align:right"><div class="badge ${badge}">${x.est}</div><div style="font-size:9px;color:#ff8a8a;margin-top:12px;cursor:pointer" onclick="borrar(${x.id})">ELIMINAR</div></div></div>`;
 });
-document.getElementById('lista').innerHTML=html||'<div style="text-align:center;padding:28px;color:#5a8bc0;font-size:12px;letter-spacing:1px">Aún no hay clientes<br><span style="font-size:10px">Agregá el primero arriba</span></div>';
-document.getElementById('sTotal').innerText='$'+a.reduce((s,x)=>s+(x.monto||0),0).toLocaleString('es-AR');
-document.getElementById('sCli').innerText=a.length;
-document.getElementById('sAtr').innerText=a.filter(x=>diasInfo(x.fechaFin).num<0).length;
+document.getElementById('lista').innerHTML=html||'<div style="text-align:center;padding:28px;color:#5a8bc0">Sin clientes</div>';
 }
-function borrar(id){if(confirm('¿Borrar este cliente?')){localStorage.setItem('CREDIMACH_FINAL',JSON.stringify(get().filter(x=>x.id!=id)));render();}}
+function borrar(id){if(confirm('¿Borrar este cliente?')){saveAll(get().filter(x=>x.id!=id));render();}}
 </script>
 </body>
 </html>
