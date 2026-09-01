@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CREDIMACH • Private</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--azul:#00296b;--azul2:#003f88;--dor:#ffd500;--dor2:#fdc500;--bg:#001233}
+:root{--azul:#00296b;--dor:#ffd500;--bg:#001233}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Space Grotesk',sans-serif}
-body{background:var(--bg);color:#fff;min-height:100vh}
+body{background:var(--bg);color:#fff}
 #login{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 20% 20%,#003f88,#001233);display:flex;align-items:center;justify-content:center;padding:20px}
-.login-card{width:100%;max-width:360px;background:rgba(255,255,255,.06);backdrop-filter:blur(30px);border:1px solid rgba(255,213,0,.25);border-radius:28px;padding:32px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.login-card img{width:78px;height:78px;border-radius:50%;border:2px solid var(--dor);object-fit:cover;background:#fff}
-input,select{width:100%;background:rgba(0,18,51,.8);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;color:#fff;margin-top:10px;outline:none;font-size:14px}
-input:focus{border-color:var(--dor)}
-.btn{display:block;width:100%;background:linear-gradient(100deg,var(--dor2),var(--dor));color:var(--azul);padding:15px;border-radius:14px;font-weight:800;text-align:center;margin-top:14px;border:none;cursor:pointer}
-.top{position:sticky;top:0;z-index:10;background:rgba(0,41,107,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,213,0,.15);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.login-card{width:100%;max-width:360px;background:rgba(255,255,255,.06);backdrop-filter:blur(30px);border:1px solid rgba(255,213,0,.25);border-radius:28px;padding:32px;text-align:center}
+.login-card img{width:78px;height:78px;border-radius:50%;border:2px solid var(--dor);background:#fff;object-fit:cover}
+input,select,textarea{width:100%;background:rgba(0,18,51,.8);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;color:#fff;margin-top:10px;outline:none}
+.btn{width:100%;background:linear-gradient(100deg,#fdc500,var(--dor));color:var(--azul);padding:15px;border-radius:14px;font-weight:800;border:none;margin-top:14px;cursor:pointer}
+.top{position:sticky;top:0;background:rgba(0,41,107,.9);backdrop-filter:blur(20px);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,213,0,.15)}
 .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
-.s{background:linear-gradient(135deg,rgba(0,63,136,.6),rgba(0,41,107,.8));border:1px solid rgba(255,213,0,.12);border-radius:18px;padding:12px;text-align:center}
-.s b{color:var(--dor);font-size:20px;display:block}.s i{font-size:8px;color:#8fb8de;letter-spacing:1px;font-style:normal}
+.s{background:rgba(0,63,136,.6);border:1px solid rgba(255,213,0,.12);border-radius:18px;padding:12px;text-align:center}
+.s b{color:var(--dor);font-size:20px;display:block}.s i{font-size:8px;color:#8fb8de;font-style:normal}
 .wrap{padding:0 16px 90px}
-.box{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px;margin-top:14px}
+.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px;margin-top:14px}
 .box h3{font-size:10px;letter-spacing:3px;color:var(--dor);margin-bottom:12px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .client{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between}
 .badge{padding:3px 9px;border-radius:20px;font-size:9px;font-weight:700;border:1px solid}
-.ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.1)}
-.mal{color:#ff6b6b;border-color:#ff6b6b;background:rgba(255,70,70,.1)}
-.fin{color:var(--dor);border-color:var(--dor);background:rgba(255,213,0,.1)}
-.calc{background:rgba(0,18,51,.7);border:1px dashed var(--dor);border-radius:14px;padding:12px;margin-top:10px}
-.calc div{display:flex;justify-content:space-between;font-size:13px;margin:4px 0}
+.ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.1)}.mal{color:#ff6b6b;border-color:#ff6b6b;background:rgba(255,70,70,.1)}.fin{color:var(--dor);border-color:var(--dor);background:rgba(255,213,0,.1)}
 </style>
 </head>
 <body>
 <div id="login">
 <div class="login-card">
 <img src="logo.png" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
-<div style="margin-top:12px;color:var(--dor);letter-spacing:5px;font-weight:800;font-size:14px">CREDIMACH</div>
+<div style="margin-top:12px;color:var(--dor);letter-spacing:5px;font-weight:800">CREDIMACH</div>
 <div style="font-size:8px;letter-spacing:4px;color:#7fb0e0;margin-bottom:16px">PRIVATE APP</div>
-<input type="password" id="pass" placeholder="Tu clave privada">
+<input type="password" id="pass" placeholder="Clave privada" onkeydown="if(event.key==='Enter') entrar()">
 <button class="btn" onclick="entrar()">ENTRAR A MI PANEL</button>
+<div style="font-size:10px;color:#5a8bc0;margin-top:10px">Clave: Todocasero.2020</div>
 </div>
 </div>
-
-<div id="
+<div id="app" style="display:none">
+<div class="top"><div style="display:flex;gap:10px;align-items:center"><img src="logo.png" style="width:38px;height:38px;border-radius:50%;border:2px solid var(--dor);background:#fff"><div><div style="color:var(--dor);font-weight:800;letter-spacing:3px;font-size:11px">CREDIMACH</div><div style="font-size:7px;letter-spacing:3px;color:#8fb8de">CONTROL PRIVADO</div></div></div><button onclick="localStorage.clear();location.reload()" style="background:none;border:1px solid rgba(255,213,0,.3);color:var(--dor);padding:6px 12px;border-radius:20px;font-size:10px">SALIR</button></div>
+<div class="stats"><div class="s"><b id="sTotal">$0</b><i>TOTAL</i></div><div class="s"><b id="sCli">0</b><i>CLIENTES</i></div><div class="s"><b id="sAtr">0</b><i>ATRASADOS</i></div></div>
+<div class="wrap">
+<div class="box"><h3>CALCULADORA 40%</h3><div class="row2"><input id="monto" type="number" placeholder="Monto"><input id="cuotas" type="number" placeholder="Cuotas"></div><button class="btn" onclick="calc()">CALCULAR</button><div id="cRes" style="display:none;margin-top:10px;background:rgba(0,18,51,.7);border:1px dashed var(--dor);border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between"><span>Interés:</span><b id="cInt" style="color:var(--dor)"></b></div><div style="display:flex;justify-content:space-between"><span>Total:</span><b id="cTot"></b></div><div style="display:flex;justify-content:space-between"><span>Cuota:</span><b id="cCuo" style="color:var(--dor)"></b></div></div></div>
+<div class="box"><h3>AGREGAR CLIENTE</h3><input id="nombre" placeholder="Nombre"><div class="row2"><input id="dni" placeholder="DNI"><input id="tel" placeholder="Tel"></div><div class="row2"><input id="cMonto" type="number" placeholder="Monto"><input id="cCuo2" type="number" placeholder="Cuotas"></div><select id="est"><option>Al día</option><option>Atrasado</option><option>Finalizado</option></select><textarea id="nota" placeholder="Nota" style="min-height:50px;resize:none"></textarea><button class="btn" onclick="save()">GUARDAR</button></div>
+<div class="box"><h3>MIS CLIENTES</h3><input id="bus" oninput="render()" placeholder="Buscar..."><div id="lista"></div></div>
+</div>
+</div>
+<script>
+const KEY="Todocasero.2020";
+if(localStorage.getItem('log')=='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render()}
+function entrar(){
+let p=document.getElementById('pass').value.trim();
+console.log("Intentando:",p);
+if(p===KEY){
+localStorage.setItem('log','ok');
+document.getElementById('login').style.display='none';
+document.getElementById('app').style.display='block';
+render();
+}else{
+alert("Clave incorrecta. Vos escribiste: ["+p+"]\nLa clave es: Todocasero.2020\nFijate mayúscula en T y el punto");
+}
+}
+function calc(){let m=parseFloat(document.getElementById('monto').value)||0,c=parseFloat(document.getElementById('cuotas').value)||1;let i=m*0.4,t=m+i;document.getElementById('cRes').style.display='block';document.getElementById('cInt').innerText='$'+i.toLocaleString();document.getElementById('cTot').innerText='$'+t.toLocaleString();document.getElementById('cCuo').innerText='$'+(t/c).toLocaleString()}
+function get(){return JSON.parse(localStorage.getItem('cli')||'[]')}
+function save(){let o={id:Date.now(),nombre:document.getElementById('nombre').value,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:parseFloat(document.getElementById('cMonto').value)||0,cuotas:parseFloat(document.getElementById('cCuo2').value)||1,est:document.getElementById('est').value,nota:document.getElementById('nota').value,fecha:new Date().toLocaleDateString()};if(!o.nombre)return alert('Nombre');let a=get();a.push(o);localStorage.setItem('cli',JSON.stringify(a));render();document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('cMonto').value='';document.getElementById('cCuo2').value='';document.getElementById('nota').value='';}
+function render(){let a=get();let b=(document.getElementById('bus').value||'').toLowerCase();let tot=0,atr=0,html='';a.filter(x=>x.nombre.toLowerCase().includes(b)||x.dni.includes(b)).forEach(x=>{tot+=x.monto;if(x.est=='Atrasado')atr++;let cl=x.est=='Al día'?'ok':x.est=='Atrasado'?'mal':'fin';html+=`<div class=client><div><b>${x.nombre}</b><div style='font-size:11px;color:#8fb8de'>DNI:${x.dni} • $${x.monto} • ${x.fecha}<br>${x.nota}</div></div><div><div class='badge ${cl}'>${x.est}</div><div style='font-size:9px;color:#ff8a8a;margin-top:6px' onclick='del(${x.id})'>Borrar</div></div></div>`});document.getElementById('lista').innerHTML=html||'<div style=text-align:center;padding:20px;color:#5a8bc0;font-size:12px>No hay clientes</div>';document.getElementById('sTotal').innerText='$'+tot.toLocaleString();document.getElementById('sCli').innerText=a.length;document.getElementById('sAtr').innerText=atr}
+function del(id){if(confirm('Borrar?')){localStorage.setItem('cli',JSON.stringify(get().filter(x=>x.id!=id)));render()}}
+</script>
+</body>
+</html>
