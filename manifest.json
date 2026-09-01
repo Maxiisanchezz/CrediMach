@@ -1,22 +1,21 @@
 {
-  "short_name": "CrediMach",
-  "name": "CrediMach - Control de Créditos",
-  "description": "Aplicación para llevar cuentas sobre un trabajo financiero sobre créditos personales",
+  "name": "CREDIMACH Private",
+  "short_name": "CREDIMACH",
+  "description": "Control privado offline",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f4f6f9",
-  "theme_color": "#2c3e50",
-  "orientation": "portrait",
+  "background_color": "#001233",
+  "theme_color": "#001233",
   "icons": [
     {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "./credimach_logo_transparent.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "./credimach_logo_transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
