@@ -4,43 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CREDIMACH</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-html,body{height:100%}
-body{
-  background:#020a1f;
-  overflow-x:hidden;
-}
-/* FONDO QUE SE MUEVE - AZUL CIELO ESPACIO */
-.fondo{
-  position:fixed;inset:0;z-index:0;
-  background: linear-gradient(180deg, #020a1f 0%, #081a4a 50%, #0a2a6b 100%);
-  overflow:hidden;
-}
-.estrella{
-  position:absolute;background:#fff;border-radius:50%;
-  animation: parpadeo 3s infinite alternate, moverEstrella 60s linear infinite;
-}
-@keyframes parpadeo{0%{opacity:0.2}100%{opacity:1}}
-@keyframes moverEstrella{from{transform:translateY(0)}to{transform:translateY(-800px)}}
-.nube{
-  position:absolute;width:400px;height:400px;
-  background: radial-gradient(circle, rgba(0,64,160,0.25) 0%, transparent 70%);
-  border-radius:50%;animation: nubeMov 20s ease-in-out infinite alternate;
-}
-@keyframes nubeMov{0%{transform:translate(0,0)}100%{transform:translate(40px,-20px)}}
+body{background:#001233;min-height:100vh}
+/* FONDO AZUL MARINO QUE SE MUEVE */
+.fondo{position:fixed;inset:0;z-index:0;background:linear-gradient(120deg,#001233,#00296b,#003080,#001233);background-size:300% 300%;animation:mueve 12s ease infinite}
+@keyframes mueve{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+#login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;padding:16px}
+.card{width:100%;max-width:360px;background:#0a1f4d;border:2px solid #ffd500;border-radius:22px;padding:24px;text-align:center}
+.logo{width:100px;height:100px;background:#fff;border:3px solid #ffd500;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;color:#001233;font-size:28px}
+.marca{color:#ffd500;font-weight:900;font-size:30px;margin:14px 0 18px;letter-spacing:1px}
+.inp{width:100%;padding:13px;border-radius:10px;border:1px solid #666;background:#001a4d;color:#fff;margin-top:8px}
+.btn{width:100%;padding:13px;border-radius:10px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:10px;font-size:16px}
+#app{display:none;position:relative;z-index:5;padding:12px}
+.box{background:#0a1f4d;border-radius:12px;padding:12px;margin-top:10px;color:#fff;border:1px solid rgba(255,255,255,.1)}
+</style>
+</head>
+<body>
+<div class="fondo"></div>
 
-#login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;padding:18px}
-.card{width:100%;max-width:350px;background:rgba(10,31,77,0.95);border:2px solid #ffd500;border-radius:24px;padding:26px 22px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.logoWrap{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd500;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.logoWrap img{width:92%;height:92%;object-fit:contain}
-.brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;letter-spacing:0.06em;color:#ffd500;line-height:1;margin:18px 0 22px;width:100%;text-align:center;text-transform:uppercase}
-.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#001a4d;color:#fff;margin-top:10px;font-size:15px;outline:none}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer}
-#app{display:none;padding:12px 12px 100px;position:relative;z-index:2}
-.top{background:rgba(0,41,107,0.95);color:#ffd500;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:12px;border:1px solid rgba(255,213,0,.3)}
-.top b{font-family:'Montserrat',sans-serif;font-weight:900}
-.box{background:rgba(10,31,77,0.92);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;margin-top:12px;color:#fff}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.client{background:rgba(0,0,0,.
+<div id="login">
+  <div class="card">
+    <div class="logo">CM</div>
+    <div class="marca">CrediMach</div>
+    <input id="pass" class="inp" type="password" placeholder="Clave">
+    <button class="btn" onclick="entrar()">ENTRAR</button>
+    <div id="err" style="display:none;color:#ff7777;margin-top:8px">Clave incorrecta</div>
+  </div>
+</div>
+
+<div id="app">
+  <div class="box" style="display:flex;justify-content:space-between;align-items:center">
+    <b style="color:#ffd500">CrediMach</b>
+    <button onclick="localStorage.removeItem('log');location.reload()" style="padding:6px 12px;border-radius:20px;background:transparent;border:1px solid #fff;color:#fff">SALIR</button>
+  </div>
+  <div class="box">
+    <h3 style="color:#ffd500">¡Entraste bien!</h3>
+    <p style="margin-top:8px;color:#ccc">Fondo azul marino moviéndose atrás. Ahora decime y te agrego arriba de esto todos tus clientes, pagos y WhatsApp sin romper nada.</p>
+  </div>
+</div>
+
+<script>
+function entrar(){
+  var v=document.getElementById('pass').value.trim();
+  if(v==="Todocasero.2020" || v.toLowerCase()==="todocasero2020"){
+    localStorage.setItem('log','ok');
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').style.display='block';
+  }else{
+    document.getElementById('err').style.display='block';
+  }
+}
+if(localStorage.getItem('log')==='ok'){
+  document.getElementById('login').style.display='none';
+  document.getElementById('app').style.display='block';
+}
+document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')entrar()});
+</script>
+</body>
+</html>
