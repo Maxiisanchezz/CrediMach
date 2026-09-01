@@ -19,4 +19,85 @@ body{background:#001233;color:#fff}
 .st{background:#003f88;border:1px solid rgba(255,213,0,.3);border-radius:18px;padding:14px;text-align:center}
 .st b{color:#ffd500;font-size:22px;display:block}
 .wrap{padding:0 14px 120px}
-.box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12
+.box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:20px;margin-top:14px}
+.box h3{color:#ffd500;font-size:11px;letter-spacing:3px;margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lab{font-size:10px;color:#8fb8de;letter-spacing:2px;margin:10px 0 2px 4px;display:block}
+.client{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:12px}
+.badge{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;border:1px solid}
+.ok{color:#00ff88;border-color:#00ff88;background:rgba(0,255,136,.15)}
+.mal{color:#ff8a8a;border-color:#ff8a8a;background:rgba(255,80,80,.15)}
+.fin{color:#ffd500;border-color:#ffd500;background:rgba(255,213,0,.2)}
+.dias{font-size:12px;font-weight:800;padding:6px 12px;border-radius:12px;display:inline-block;margin-top:8px}
+.dv{background:rgba(0,255,136,.18);color:#00ff88;border:1px solid #00ff88}
+.da{background:rgba(255,213,0,.18);color:#ffd500;border:1px solid #ffd500}
+.dr{background:rgba(255,80,80,.18);color:#ff8a8a;border:1px solid #ff8a8a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:rgba(0,0,0,.3);padding:12px;border-radius:14px;margin-top:10px}
+.grid span{font-size:11px;color:#8fb8de}
+.grid b{font-size:15px}
+.wa{background:#25D366;color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:800;text-decoration:none;display:inline-block;margin-top:8px}
+.btnp{background:#ffd500;color:#001233;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:800;border:none;cursor:pointer;margin-top:8px}
+.prog{height:8px;background:rgba(255,255,255,.15);border-radius:10px;margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#00ff88,#ffd500)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
+.mc{width:100%;max-width:380px;background:#0d234f;border:1px solid #ffd500;border-radius:22px;padding:22px}
+</style>
+</head>
+<body>
+<div id="login"><div class="card">
+<img src="./logo.png" style="width:90px;height:90px;border-radius:50%;border:3px solid #ffd500;background:#fff;padding:6px;object-fit:contain">
+<div style="color:#ffd500;font-weight:800;letter-spacing:6px;font-size:26px;margin-top:14px">CREDIMACH</div>
+<div style="color:#8fb8de;font-size:10px;letter-spacing:3px;margin-top:4px">EDICION FINAL - CON CLAVE</div>
+<input type="password" id="pass" class="inp" placeholder="Clave: Todocasero.2020">
+<button class="btn" onclick="entrar()">ENTRAR</button>
+<button class="ghost" onclick="forzar()">EMERGENCIA - ENTRAR SIN CLAVE</button>
+<div id="error" style="display:none;color:#ff8a8a;margin-top:12px;font-size:13px"></div>
+</div></div>
+<div id="app">
+<div class="top"><div style="display:flex;gap:12px;align-items:center"><img src="./logo.png" style="width:42px;height:42px;border-radius:50%;border:2px solid #ffd500;background:#fff;padding:3px"><div><div style="color:#ffd500;font-weight:800;letter-spacing:3px">CREDIMACH</div><div style="font-size:9px;color:#8fb8de">FINAL PULIDA</div></div></div><button onclick="salir()" style="background:rgba(255,255,255,.15);border:1px solid #fff;color:#fff;padding:8px 14px;border-radius:20px">SALIR</button></div>
+<div class="stats"><div class="st"><b id="sTotal">$0</b><span style="font-size:11px;color:#8fb8de">PRESTADO</span></div><div class="st"><b id="sCli">0</b><span style="font-size:11px;color:#8fb8de">CLIENTES</span></div><div class="st"><b id="sAtr">0</b><span style="font-size:11px;color:#8fb8de">VENCIDOS</span></div></div>
+<div class="wrap">
+<div class="box"><h3>NUEVO CLIENTE - 40% AUTOMATICO</h3>
+<input id="nombre" class="inp" placeholder="Nombre completo *">
+<div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp 385..."></div>
+<div class="row"><input id="cMonto" class="inp" type="number" placeholder="Monto ej 100000" oninput="calc()"><input id="cCuo2" class="inp" type="number" placeholder="Cuotas ej 6" oninput="calc()"></div>
+<div id="preview" style="display:none;background:rgba(255,213,0,.12);border:1px dashed #ffd500;border-radius:14px;padding:14px;margin-top:12px;font-size:14px"></div>
+<span class="lab">FECHA INICIO (cuando diste la plata)</span>
+<div class="row">
+<input id="fechaInicio" class="inp" style="margin-top:2px" type="text" placeholder="📅 INICIO - Toca aqui" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()">
+<input id="fechaFin" class="inp" style="margin-top:2px" type="text" placeholder="📅 VENCE - Toca aqui" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+</div>
+<span class="lab">ESTADO</span>
+<select id="est" class="inp" style="margin-top:2px"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
+<button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
+<div id="msgOk" style="display:none;background:#00ff88;color:#001233;padding:12px;border-radius:12px;margin-top:12px;text-align:center;font-weight:800">✅ GUARDADO</div>
+</div>
+<div class="box"><h3>CARTERA</h3><input id="bus" class="inp" style="margin:0 0 14px 0" oninput="render()" placeholder="Buscar por nombre o DNI..."><div id="lista"></div></div>
+</div>
+</div>
+<div id="modalPago" class="modal" onclick="if(event.target==this)cerrar()"><div class="mc">
+<div style="display:flex;justify-content:space-between"><h3 style="color:#ffd500">REGISTRAR PAGO</h3><span onclick="cerrar()" style="cursor:pointer;color:#fff;font-size:22px">✕</span></div>
+<div id="modalInfo" style="margin:14px 0;background:rgba(0,0,0,.4);padding:14px;border-radius:12px;font-size:14px"></div>
+<input id="montoPago" type="number" class="inp" placeholder="Cuanto pago?">
+<input id="fechaPago" type="date" class="inp">
+<button class="btn" onclick="confirmar(true)">GUARDAR + WHATSAPP</button>
+<button class="ghost" onclick="confirmar(false)">SOLO GUARDAR</button>
+</div></div>
+<script>
+var CLAVE="Todocasero.2020";
+function norm(t){return (t||"").trim().toLowerCase().replace(/\./g,"");}
+function entrar(){var v=document.getElementById('pass').value||"";if(!v){document.getElementById('error').style.display='block';document.getElementById('error').innerText='Pone: Todocasero.2020';return;}if(v.trim()===CLAVE||norm(v)==="todocasero2020"){try{localStorage.setItem('credimach_log','ok');}catch(e){}mostrar();}else{document.getElementById('error').style.display='block';document.getElementById('error').innerText='Incorrecta. Es: Todocasero.2020';}}
+function forzar(){try{localStorage.setItem('credimach_log','ok');}catch(e){}document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}
+function mostrar(){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}
+function salir(){try{localStorage.removeItem('credimach_log');localStorage.removeItem('log');}catch(e){}document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';}
+try{if(localStorage.getItem('credimach_log')==='ok'||localStorage.getItem('log')==='ok')mostrar();}catch(e){}
+function getData(){try{var ks=['CREDIMACH_PAGOS_V1','CREDIMACH_FINAL_V6','CREDIMACH_FINAL_V5','CREDIMACH_OFICIAL','CREDIMACH_FINAL','CREDIMACH_DB'];var all=[];for(var k=0;k<ks.length;k++){try{var d=JSON.parse(localStorage.getItem(ks[k])||'[]');if(Array.isArray(d))all=all.concat(d);}catch(e){}}var m={};var f=[];for(var i=0;i<all.length;i++){var c=all[i];if(!c||!c.nombre)continue;if(!c.id)c.id=Date.now()+Math.random();if(!m[c.id]){m[c.id]=true;if(!c.pagos)c.pagos=[];if(c.pagado==null)c.pagado=0;if(!c.interes)c.interes=(c.monto||0)*0.4;if(!c.total)c.total=(c.monto||0)*1.4;if(!c.cuotaM)c.cuotaM=c.total/(c.cuotas||1);f.push(c);}}localStorage.setItem('CREDIMACH_DB',JSON.stringify(f));return f;}catch(e){return JSON.parse(localStorage.getItem('CREDIMACH_DB')||'[]');}}
+function saveAll(a){localStorage.setItem('CREDIMACH_DB',JSON.stringify(a));localStorage.setItem('CREDIMACH_BACKUP_'+Date.now(),JSON.stringify(a));}
+function calc(){var m=parseFloat(document.getElementById('cMonto').value)||0;var cu=parseFloat(document.getElementById('cCuo2').value)||0;if(m>0){var i=m*0.4;var t=m+i;var q=cu>0?Math.round(t/cu):t;var p=document.getElementById('preview');p.style.display='block';p.innerHTML='Interes: <b style="color:#ffd500">$'+i.toLocaleString('es-AR')+'</b> | Total: $'+t.toLocaleString('es-AR')+'<br>Cuota x'+(cu||1)+': <b style="color:#ffd500;font-size:18px">$'+q.toLocaleString('es-AR')+'</b>';}var ini=document.getElementById('fechaInicio').value;if(ini&&cu>0){var sp=ini.split('-');var dt=new Date(parseInt(sp[0]),parseInt(sp[1])-1,parseInt(sp[2]));dt.setMonth(dt.getMonth()+cu);document.getElementById('fechaFin').value=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);if(document.getElementById('fechaFin').type=='text'&&document.getElementById('fechaFin').value)document.getElementById('fechaFin').type='date';}}
+function guardar(){var n=document.getElementById('nombre').value.trim();if(!n){alert('Nombre');return;}var mo=parseFloat(document.getElementById('cMonto').value)||0;var cu=parseFloat(document.getElementById('cCuo2').value)||0;if(mo<=0){alert('Monto');return;}var inter=mo*0.4;var tot=mo+inter;var cuM=cu>0?tot/cu:tot;var o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:mo,cuotas:cu,interes:inter,total:tot,cuotaM:cuM,fechaInicio:document.getElementById('fechaInicio').value,fechaFin:document.getElementById('fechaFin').value,est:document.getElementById('est').value,pagos:[],pagado:0};var a=getData();a.push(o);saveAll(a);var ok=document.getElementById('msgOk');ok.style.display='block';setTimeout(function(){ok.style.display='none';},2000);document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('cMonto').value='';document.getElementById('cCuo2').value='';document.getElementById('fechaInicio').value='';document.getElementById('fechaFin').value='';document.getElementById('fechaInicio').type='text';document.getElementById('fechaFin').type='text';document.getElementById('preview').style.display='none';render();}
+function fmt(f){if(!f)return'-';var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
+function diasInfo(f){if(!f)return{txt:'Sin fecha',cls:'da',num:9999};var h=new Date();h.setHours(0,0,0,0);var p=f.split('-');var fin=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));fin.setHours(0,0,0,0);var diff=Math.ceil((fin-h)/86400000);if(diff<0)return{txt:'VENCIDO hace '+Math.abs(diff)+' dias',cls:'dr',num:diff};if(diff==0)return{txt:'VENCE HOY',cls:'dr',num:0};if(diff<=15)return{txt:'Faltan '+diff+' dias',cls:'da',num:diff};return{txt:'Faltan '+diff+' dias',cls:'dv',num:diff};}
+var clienteActual=null;
+function abrirPago(id){var list=getData();for(var i=0;i<list.length;i++)if(list[i].id==id)clienteActual=list[i];var pag=clienteActual.pagado||0;var sal=(clienteActual.total||0)-pag;document.getElementById('modalInfo').innerHTML='<b>'+clienteActual.nombre+'</b><br>Total: $'+(clienteActual.total||0).toLocaleString('es-AR')+'<br>Pagado: <b style="color:#00ff88">$'+pag.toLocaleString('es-AR')+'</b><br>Saldo: <b style="color:#ffd500">$'+sal.toLocaleString('es-AR')+'</b>';document.getElementById('fechaPago').valueAsDate=new Date();document.getElementById('montoPago').value=clienteActual.cuotaM?Math.round(clienteActual.cuotaM):'';document.getElementById('modalPago').style.display='flex';}
+function cerrar(){document.getElementById('modalPago').style.display='none';}
+function confirmar(conWA){var mo=parseFloat(document.getElementById('montoPago').value)||0;if(mo<=0){alert('Monto');return;}var fe=document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10);var a=getData();var idx=-1;for(var i=0;i<a.length;i++)if(a[i].id==clienteActual.id)idx=i;if(idx==-1)return;if(!a[idx].pagos)a[idx].pagos=[];a[idx].pagos.push({monto:mo,fecha:fe,fechaTxt:fmt(fe)});a[idx].pagado=(a[idx].pagado||0)+mo;if(a[idx].pagado>=a[idx].total)a[idx].est='Finalizado';saveAll(a);cerrar();render();if(conWA){var tel=(a[idx].tel||'').replace(/[^0-9]/g,'');if(tel){if(tel.indexOf('54')!=0)tel='549'+tel;var pagado=a[idx].pagado;var saldo=a[idx].total-pagado;var msg='Hola '+a[idx].nombre+'%0A✅ PAGO RECIBIDO - CREDIMACH%0A💵 Pagaste: $'+mo.toLocaleString('es-AR')+'%0A📅 '+fmt(fe)+'%0A📊 Total:
