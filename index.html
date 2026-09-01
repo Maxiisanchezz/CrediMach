@@ -7,145 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+html,body{height:100%}
 body{
-  background: radial-gradient(ellipse at bottom, #0d1b4a 0%, #020a1f 100%);
-  min-height:100vh;
+  background:#020a1f;
   overflow-x:hidden;
 }
-/* CIELO NOCTURNO - ESTRELLAS */
-.space{position:fixed;inset:0;z-index:-2;overflow:hidden;background: radial-gradient(ellipse at bottom, #0d1b4a 0%, #020a1f 100%)}
-.stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
-.stars1{
-  width:1px;height:1px;background:transparent;
-  box-shadow:
-  10px 20px #fff, 50px 80px #fff, 90px 10px #fff, 130px 200px #fff, 180px 150px #ffd500,
-  220px 90px #fff, 300px 40px #fff, 350px 180px #fff, 400px 20px #fff, 450px 100px #fff,
-  500px 220px #fff, 550px 50px #fff, 600px 120px #fff, 650px 200px #fff, 700px 80px #fff,
-  750px 10px #fff, 800px 150px #fff, 850px 90px #ffd500, 900px 30px #fff, 950px 170px #fff,
-  100px 300px #fff, 200px 350px #fff, 300px 320px #fff, 400px 380px #fff, 500px 300px #fff,
-  600px 350px #fff, 700px 300px #fff, 800px 400px #fff, 900px 350px #fff, 50px 450px #fff;
-  animation: moveStars 120s linear infinite;
+/* FONDO QUE SE MUEVE - AZUL CIELO ESPACIO */
+.fondo{
+  position:fixed;inset:0;z-index:0;
+  background: linear-gradient(180deg, #020a1f 0%, #081a4a 50%, #0a2a6b 100%);
+  overflow:hidden;
 }
-.stars2{
-  width:2px;height:2px;background:transparent;
-  box-shadow:
-  30px 50px #fff, 120px 250px #fff, 250px 100px #ffd500, 380px 300px #fff,
-  480px 50px #fff, 580px 280px #fff, 680px 150px #fff, 780px 250px #fff, 880px 100px #fff;
-  animation: moveStars 180s linear infinite;
-  opacity:.8;
+.estrella{
+  position:absolute;background:#fff;border-radius:50%;
+  animation: parpadeo 3s infinite alternate, moverEstrella 60s linear infinite;
 }
-.stars3{
-  width:3px;height:3px;background:transparent;border-radius:50%;
-  box-shadow: 200px 150px rgba(255,213,0,.9), 600px 400px rgba(255,255,255,.9), 100px 500px rgba(255,255,255,.8);
-  animation: twinkle 3s ease-in-out infinite;
+@keyframes parpadeo{0%{opacity:0.2}100%{opacity:1}}
+@keyframes moverEstrella{from{transform:translateY(0)}to{transform:translateY(-800px)}}
+.nube{
+  position:absolute;width:400px;height:400px;
+  background: radial-gradient(circle, rgba(0,64,160,0.25) 0%, transparent 70%);
+  border-radius:50%;animation: nubeMov 20s ease-in-out infinite alternate;
 }
-@keyframes moveStars{
-  from{transform:translateY(0)}
-  to{transform:translateY(-1000px)}
-}
-@keyframes twinkle{
-  0%,100%{opacity:.3} 50%{opacity:1}
-}
-/* Nebulosa azul suave que se mueve */
-.nebula{
-  position:absolute;width:120%;height:120%;top:-10%;left:-10%;
-  background: radial-gradient(ellipse at 30% 20%, rgba(0,41,107,.6) 0%, transparent 50%),
-              radial-gradient(ellipse at 80% 70%, rgba(0,64,160,.4) 0%, transparent 50%),
-              radial-gradient(ellipse at 50% 50%, rgba(255,213,0,.05) 0%, transparent 70%);
-  animation: nebulaMove 30s ease-in-out infinite alternate;
-}
-@keyframes nebulaMove{
-  0%{transform:scale(1) translate(0,0)}
-  100%{transform:scale(1.1) translate(-30px,20px)}
-}
+@keyframes nubeMov{0%{transform:translate(0,0)}100%{transform:translate(40px,-20px)}}
 
 #login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;padding:18px}
-.card{width:100%;max-width:350px;background:rgba(10,31,77,.88);backdrop-filter:blur(12px);border:2px solid #ffd500;border-radius:24px;padding:26px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;box-shadow:0 0 50px rgba(0,0,0,.8), 0 0 20px rgba(255,213,0,.15)}
-.logoWrap{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd500;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 20px rgba(255,213,0,.5)}
+.card{width:100%;max-width:350px;background:rgba(10,31,77,0.95);border:2px solid #ffd500;border-radius:24px;padding:26px 22px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.logoWrap{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd500;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .logoWrap img{width:92%;height:92%;object-fit:contain}
-.brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;letter-spacing:0.06em;color:#ffd500;line-height:1;margin:18px 0 22px;width:100%;text-align:center;text-transform:uppercase;text-shadow:0 0 15px rgba(255,213,0,.6)}
-.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,26,77,.9);color:#fff;margin-top:10px;font-size:15px;outline:none}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer;box-shadow:0 0 15px rgba(255,213,0,.4)}
+.brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;letter-spacing:0.06em;color:#ffd500;line-height:1;margin:18px 0 22px;width:100%;text-align:center;text-transform:uppercase}
+.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#001a4d;color:#fff;margin-top:10px;font-size:15px;outline:none}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer}
 #app{display:none;padding:12px 12px 100px;position:relative;z-index:2}
-.top{background:rgba(0,41,107,.88);backdrop-filter:blur(10px);color:#ffd500;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:12px;border:1px solid rgba(255,213,0,.3)}
-.top b{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:1px}
-.box{background:rgba(10,31,77,.88);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;margin-top:12px;color:#fff}
+.top{background:rgba(0,41,107,0.95);color:#ffd500;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:12px;border:1px solid rgba(255,213,0,.3)}
+.top b{font-family:'Montserrat',sans-serif;font-weight:900}
+.box{background:rgba(10,31,77,0.92);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;margin-top:12px;color:#fff}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.client{background:rgba(0,0,0,.35);padding:12px;border-radius:12px;margin-top:10px;border:1px solid rgba(255,255,255,.06)}
-.cHead{display:flex;justify-content:space-between;gap:8px}
-.act{display:flex;gap:6px;margin-top:8px}
-.bSmall{padding:6px 12px;border-radius:10px;border:none;font-weight:800;font-size:11px;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999}
-.mc{width:100%;max-width:380px;background:#0d234f;border:1px solid #ffd500;border-radius:18px;padding:18px;max-height:90vh;overflow:auto}
-.prog{height:5px;background:rgba(255,255,255,.1);border-radius:10px;margin-top:6px;overflow:hidden}
-.prog i{display:block;height:100%;background:#ffd500}
-</style>
-</head>
-<body>
-
-<div class="space">
-  <div class="nebula"></div>
-  <div class="stars stars1"></div>
-  <div class="stars stars2"></div>
-  <div class="stars stars3"></div>
-</div>
-
-<div id="login"><div class="card">
-<div class="logoWrap"><img src="./logo.png" onerror="this.parentElement.innerHTML='<b style=color:#001233;font-family:Montserrat,sans-serif;font-weight:900;font-size:34px>CM</b>'"></div>
-<div class="brand">CrediMach</div>
-<input id="pass" class="inp" type="password" placeholder="Clave">
-<button class="btn" onclick="entrar()">ENTRAR</button>
-<div id="err" style="color:#ff8a8a;margin-top:10px;display:none">Clave incorrecta</div>
-</div></div>
-
-<div id="app">
-<div class="top"><b>CrediMach</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
-<div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div>
-<div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div>
-<div class="box" style="text-align:center"><b id="sAtr" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">VENCIDOS</span></div>
-</div>
-<div class="box">
-<div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800;margin-bottom:8px">NUEVO CLIENTE</div>
-<input id="nombre" class="inp" placeholder="Nombre *"><div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
-<div class="row"><input id="monto" class="inp" type="number" placeholder="Monto" oninput="calc()"><input id="cuotas" class="inp" type="number" placeholder="Cuotas" oninput="calc()"></div>
-<div id="prev" style="display:none;background:rgba(255,213,0,.08);border:1px dashed #ffd500;border-radius:10px;padding:10px;margin-top:8px;font-size:13px"></div>
-<div class="row"><input id="f1" class="inp" type="text" placeholder="INICIO" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()"><input id="f2" class="inp" type="text" placeholder="VENCE" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"></div>
-<select id="est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
-<button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
-</div>
-<div class="box"><div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA</div><input id="bus" class="inp" placeholder="🔍 Buscar..." oninput="render()"><div id="lista" style="margin-top:10px"></div></div>
-</div>
-
-<div id="modalPago" class="modal" onclick="if(event.target==this)cerrarPago()"><div class="mc">
-<div style="display:flex;justify-content:space-between"><b style="color:#ffd500">REGISTRAR PAGO</b><span onclick="cerrarPago()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<div id="modalInfo" style="margin:12px 0;background:rgba(0,0,0,.3);padding:10px;border-radius:10px;font-size:13px"></div>
-<input id="montoPago" type="number" class="inp" placeholder="Importe"><input id="fechaPago" type="date" class="inp">
-<button class="btn" onclick="confirmarPago(true)">GUARDAR + WHATSAPP</button>
-<button class="btn" style="background:transparent;border:1px solid #ffd500;color:#ffd500" onclick="confirmarPago(false)">SOLO GUARDAR</button>
-</div></div>
-
-<div id="modalEdit" class="modal" onclick="if(event.target==this)cerrarEdit()"><div class="mc">
-<div style="display:flex;justify-content:space-between"><b style="color:#ffd500">EDITAR CLIENTE</b><span onclick="cerrarEdit()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<input id="e_nombre" class="inp" placeholder="Nombre"><div class="row"><input id="e_dni" class="inp" placeholder="DNI"><input id="e_tel" class="inp" placeholder="WhatsApp"></div>
-<div class="row"><input id="e_monto" class="inp" type="number" placeholder="Monto"><input id="e_cuotas" class="inp" type="number" placeholder="Cuotas"></div>
-<div class="row"><input id="e_f1" class="inp" type="date"><input id="e_f2" class="inp" type="date"></div>
-<select id="e_est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
-<button class="btn" onclick="guardarEdit()">GUARDAR CAMBIOS</button>
-</div></div>
-
-<script>
-var CLAVE="Todocasero.2020";
-function entrar(){var v=document.getElementById('pass').value.trim();if(v===CLAVE||v.toLowerCase().replace(/\./g,'')==='todocasero2020'){localStorage.setItem('log','ok');document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';render();}else{document.getElementById('err').style.display='block';}}
-function salir(){localStorage.removeItem('log');document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';}
-if(localStorage.getItem('log')==='ok'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';}
-function get(){try{return JSON.parse(localStorage.getItem('CREDIMACH_DB')||localStorage.getItem('DB')||'[]')}catch(e){return []}}
-function save(a){localStorage.setItem('CREDIMACH_DB',JSON.stringify(a));localStorage.setItem('DB',JSON.stringify(a));}
-function calc(){var m=parseFloat(document.getElementById('monto').value)||0;var cu=parseFloat(document.getElementById('cuotas').value)||0;if(m>0){var t=m*1.4;var q=cu>0?Math.round(t/cu):t;var p=document.getElementById('prev');p.style.display='block';p.innerHTML='Total <b style=color:#ffd500>$'+t.toLocaleString('es-AR')+'</b> | Cuota <b style=color:#ffd500>$'+q.toLocaleString('es-AR')+'</b>';}var ini=document.getElementById('f1').value;if(ini&&cu>0){var sp=ini.split('-');if(sp.length===3){var dt=new Date(sp[0],sp[1]-1,sp[2]);dt.setMonth(dt.getMonth()+cu);document.getElementById('f2').value=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);if(document.getElementById('f2').type==='text')document.getElementById('f2').type='date';}}}
-function guardar(){var n=document.getElementById('nombre').value.trim();var mo=parseFloat(document.getElementById('monto').value)||0;if(!n||mo<=0){alert('Falta nombre o monto');return;}var cu=parseFloat(document.getElementById('cuotas').value)||0;var tot=mo*1.4;var cuM=cu>0?tot/cu:tot;var o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:mo,cuotas:cu,total:tot,cuotaM:cuM,f1:document.getElementById('f1').value,f2:document.getElementById('f2').value,est:document.getElementById('est').value,pagado:0,pagos:[]};var a=get();a.push(o);save(a);document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('monto').value='';document.getElementById('cuotas').value='';document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f1').type='text';document.getElementById('f2').type='text';document.getElementById('prev').style.display='none';render();}
-function fmt(f){if(!f)return new Date().toLocaleDateString('es-AR');var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
-function dias(f){if(!f)return{txt:'Sin fecha',n:9999};var h=new Date();h.setHours(0,0,0,0);var p=f.split('-');var fin=new Date(p[0],p[1]-1,p[2]);var d=Math.ceil((fin-h)/86400000);if(d<0)return{txt:'VENCIDO',n:d};if(d==0)return{txt:'HOY',n:0};return{txt:d+' dias',n:d};}
-var cliSel=null;
-function abrirPago(id){var a=get();for(var i=0;i<a.length;i++)if(a[i].id==id)cliSel=a[i];document.getElementById('modalInfo').innerHTML='<b>'+cliSel.nombre+'</b><br>Total $'+cliSel.total.toLocaleString('es-AR');document.getElementById('fechaPago').valueAsDate=new Date();document.getElementById('montoPago').value=cliSel.cuotaM?Math.round(cliSel.cuotaM):'';document.getElementById('modalPago').style.display='flex';}
-function cerrarPago(){document.getElementById('modalPago').style.display='none';}
-function confirmarPago(conWA){var mo=parseFloat(document.getElementById('montoPago').value)||0;if(mo<=0){alert('Monto');return;}var fe=document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10);var a=get();var idx=a.findIndex(x=>x.id==cliSel.id);if(idx==-1)return;if(!a[idx].pagos)a[idx].pagos=[];a[idx].pagos.push({monto:mo,fecha:fe});a[idx].pagado=(a[idx].pagado||0)+mo;if(a[idx].pagado>=a[idx].total)a[idx].est='Finalizado';save(a);cerrarPago();render();if(conWA){var tel=(a[idx].tel||'').replace(/[^0-9]/g,'');if(tel){if(tel.indexOf('54')!=0)tel='549'+tel;var pagado=a[idx].pagado;var saldo=a[idx].total-pagado;if(saldo<0)saldo=0;var msg="*CREDIMACH - COMPROBANTE DE PAGO* %0A%0A";msg+="Estimado/a *"+encodeURIComponent(a[idx].nombre)+"*, hemos registrado su pago correctamente.%0A%0A";msg+="💵 *Importe abonado:* $"+mo.toLocaleString('es-AR')+"%0A";msg+="📅 *Fecha de pago:* "+fmt(fe)+"%0A";msg+="📊 *Total del crédito:* $"+a[idx].total.toLocaleString('es-AR')+"%0A";msg+="✅ *Total abonado:* $"+pagado.toLocaleString('es-AR')+"%0A";msg+="💰 *Saldo pendiente:* $"+saldo.toLocaleString('es-AR')+"%0A%0A";msg+="Gracias por su compromiso.%0AQuedamos a su disposición.%0A%0A";msg+="*CREDIMACH*";window.open('https://wa.me/'+
+.client{background:rgba(0,0,0,.
