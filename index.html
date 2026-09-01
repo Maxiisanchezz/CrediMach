@@ -4,32 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CREDIMACH</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#001233}
-#login{position:fixed;inset:0;background:#001233;display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px}
-.card{width:100%;max-width:350px;background:#0a1f4d;border:2px solid #ffd500;border-radius:24px;padding:26px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.logoWrap{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd500;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
-.logoWrap img{width:92%;height:92%;object-fit:contain}
-.brand{
-  font-family:'Montserrat', sans-serif;
-  font-weight:900;
-  font-size:32px;
-  letter-spacing:0.06em;
-  color:#ffd500;
-  line-height:1;
-  margin:18px 0 22px 0;
-  width:100%;
-  text-align:center;
-  text-transform:uppercase;
-  font-style:normal;
-}
-.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#001a4d;color:#fff;margin-top:10px;font-size:15px;outline:none}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer}
+#login{position:fixed;inset:0;background:#001233;display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.card{width:100%;max-width:360px;background:#0a1f4d;border:2px solid #ffd500;border-radius:24px;padding:32px 22px;text-align:center}
+.brand{font-family:'Cinzel',serif;font-weight:800;font-size:32px;letter-spacing:7px;color:#ffd500}
+.inp{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:#001a4d;color:#fff;margin-top:8px;font-size:14px;outline:none}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#ffd500;color:#001233;font-weight:900;margin-top:10px;font-size:14px;cursor:pointer}
 #app{display:none;padding:12px 12px 100px}
 .top{background:#00296b;color:#ffd500;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:12px}
-.top b{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:1px}
+.top b{font-family:'Cinzel',serif;letter-spacing:4px}
 .box{background:#0a1f4d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;margin-top:12px;color:#fff}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .client{background:rgba(0,0,0,.25);padding:12px;border-radius:12px;margin-top:10px}
@@ -44,43 +30,55 @@ body{background:#001233}
 </head>
 <body>
 <div id="login"><div class="card">
-<div class="logoWrap"><img src="./logo.png" onerror="this.parentElement.innerHTML='<b style=color:#001233;font-family:Montserrat,sans-serif;font-weight:900;font-size:34px>CM</b>'"></div>
-<div class="brand">CrediMach</div>
-<input id="pass" class="inp" type="password" placeholder="Clave">
+<img src="./logo.png" onerror="this.style.display='none'" style="width:88px;height:88px;border-radius:50%;border:3px solid #ffd500;background:#fff;padding:6px;object-fit:contain">
+<div class="brand">CREDIMACH</div>
+<input id="pass" class="inp" type="password" placeholder="Clave" style="margin-top:18px">
 <button class="btn" onclick="entrar()">ENTRAR</button>
 <div id="err" style="color:#ff8a8a;margin-top:10px;display:none">Clave incorrecta</div>
 </div></div>
 
 <div id="app">
-<div class="top"><b>CrediMach</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
+<div class="top"><b>CREDIMACH</b><button onclick="salir()" style="padding:6px 12px;border-radius:20px;border:1px solid #fff;background:transparent;color:#fff">SALIR</button></div>
+
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
 <div class="box" style="text-align:center"><b id="sTotal" style="color:#ffd500;display:block">$0</b><span style="font-size:10px;color:#8fb8de">PRESTADO</span></div>
 <div class="box" style="text-align:center"><b id="sCli" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">CLIENTES</span></div>
 <div class="box" style="text-align:center"><b id="sAtr" style="color:#ffd500;display:block">0</b><span style="font-size:10px;color:#8fb8de">VENCIDOS</span></div>
 </div>
+
 <div class="box">
 <div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800;margin-bottom:8px">NUEVO CLIENTE</div>
-<input id="nombre" class="inp" placeholder="Nombre *"><div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
+<input id="nombre" class="inp" placeholder="Nombre *">
+<div class="row"><input id="dni" class="inp" placeholder="DNI"><input id="tel" class="inp" placeholder="WhatsApp"></div>
 <div class="row"><input id="monto" class="inp" type="number" placeholder="Monto" oninput="calc()"><input id="cuotas" class="inp" type="number" placeholder="Cuotas" oninput="calc()"></div>
 <div id="prev" style="display:none;background:rgba(255,213,0,.08);border:1px dashed #ffd500;border-radius:10px;padding:10px;margin-top:8px;font-size:13px"></div>
 <div class="row"><input id="f1" class="inp" type="text" placeholder="INICIO" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" oninput="calc()"><input id="f2" class="inp" type="text" placeholder="VENCE" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"></div>
 <select id="est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
 <button class="btn" onclick="guardar()">GUARDAR CLIENTE</button>
 </div>
-<div class="box"><div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA</div><input id="bus" class="inp" placeholder="🔍 Buscar..." oninput="render()"><div id="lista" style="margin-top:10px"></div></div>
+
+<div class="box">
+<div style="color:#ffd500;font-size:10px;letter-spacing:3px;font-weight:800">CARTERA - BUSCADOR Y EDITOR</div>
+<input id="bus" class="inp" placeholder="🔍 Buscar cliente por nombre, DNI o tel..." oninput="render()">
+<div id="lista" style="margin-top:10px"></div>
+</div>
 </div>
 
+<!-- MODAL PAGO -->
 <div id="modalPago" class="modal" onclick="if(event.target==this)cerrarPago()"><div class="mc">
 <div style="display:flex;justify-content:space-between"><b style="color:#ffd500">REGISTRAR PAGO</b><span onclick="cerrarPago()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
 <div id="modalInfo" style="margin:12px 0;background:rgba(0,0,0,.3);padding:10px;border-radius:10px;font-size:13px"></div>
-<input id="montoPago" type="number" class="inp" placeholder="Importe"><input id="fechaPago" type="date" class="inp">
+<input id="montoPago" type="number" class="inp" placeholder="Importe">
+<input id="fechaPago" type="date" class="inp">
 <button class="btn" onclick="confirmarPago(true)">GUARDAR + WHATSAPP</button>
 <button class="btn" style="background:transparent;border:1px solid #ffd500;color:#ffd500" onclick="confirmarPago(false)">SOLO GUARDAR</button>
 </div></div>
 
+<!-- MODAL EDITAR -->
 <div id="modalEdit" class="modal" onclick="if(event.target==this)cerrarEdit()"><div class="mc">
 <div style="display:flex;justify-content:space-between"><b style="color:#ffd500">EDITAR CLIENTE</b><span onclick="cerrarEdit()" style="cursor:pointer;color:#fff;font-size:20px">✕</span></div>
-<input id="e_nombre" class="inp" placeholder="Nombre"><div class="row"><input id="e_dni" class="inp" placeholder="DNI"><input id="e_tel" class="inp" placeholder="WhatsApp"></div>
+<input id="e_nombre" class="inp" placeholder="Nombre">
+<div class="row"><input id="e_dni" class="inp" placeholder="DNI"><input id="e_tel" class="inp" placeholder="WhatsApp"></div>
 <div class="row"><input id="e_monto" class="inp" type="number" placeholder="Monto"><input id="e_cuotas" class="inp" type="number" placeholder="Cuotas"></div>
 <div class="row"><input id="e_f1" class="inp" type="date"><input id="e_f2" class="inp" type="date"></div>
 <select id="e_est" class="inp"><option>Al dia</option><option>Atrasado</option><option>Finalizado</option></select>
@@ -98,5 +96,49 @@ function calc(){var m=parseFloat(document.getElementById('monto').value)||0;var 
 function guardar(){var n=document.getElementById('nombre').value.trim();var mo=parseFloat(document.getElementById('monto').value)||0;if(!n||mo<=0){alert('Falta nombre o monto');return;}var cu=parseFloat(document.getElementById('cuotas').value)||0;var tot=mo*1.4;var cuM=cu>0?tot/cu:tot;var o={id:Date.now(),nombre:n,dni:document.getElementById('dni').value,tel:document.getElementById('tel').value,monto:mo,cuotas:cu,total:tot,cuotaM:cuM,f1:document.getElementById('f1').value,f2:document.getElementById('f2').value,est:document.getElementById('est').value,pagado:0,pagos:[]};var a=get();a.push(o);save(a);document.getElementById('nombre').value='';document.getElementById('dni').value='';document.getElementById('tel').value='';document.getElementById('monto').value='';document.getElementById('cuotas').value='';document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f1').type='text';document.getElementById('f2').type='text';document.getElementById('prev').style.display='none';render();}
 function fmt(f){if(!f)return new Date().toLocaleDateString('es-AR');var p=f.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
 function dias(f){if(!f)return{txt:'Sin fecha',n:9999};var h=new Date();h.setHours(0,0,0,0);var p=f.split('-');var fin=new Date(p[0],p[1]-1,p[2]);var d=Math.ceil((fin-h)/86400000);if(d<0)return{txt:'VENCIDO',n:d};if(d==0)return{txt:'HOY',n:0};return{txt:d+' dias',n:d};}
+
 var cliSel=null;
-function abrirPago(id){var a=get();for(var i=0;i<a.length;i++)if(a[i].id==id)cliSel=a[i];document.getElementById('modalInfo').innerHTML='<b>'+cliSel.nombre+'</b><br>Total $'+cliSel.total.toLocaleString('es-AR');document.getElementById('fechaPago').valueAsDate=new Date();document.getElementById('montoPago').value=cliSel.cuotaM?Math.round(cliSel.cuotaM):'';document.getElementById('
+function abrirPago(id){var a=get();for(var i=0;i<a.length;i++)if(a[i].id==id)cliSel=a[i];document.getElementById('modalInfo').innerHTML='<b>'+cliSel.nombre+'</b><br>Total $'+cliSel.total.toLocaleString('es-AR')+'<br>Pagado $'+(cliSel.pagado||0).toLocaleString('es-AR');document.getElementById('fechaPago').valueAsDate=new Date();document.getElementById('montoPago').value=cliSel.cuotaM?Math.round(cliSel.cuotaM):'';document.getElementById('modalPago').style.display='flex';}
+function cerrarPago(){document.getElementById('modalPago').style.display='none';}
+function confirmarPago(conWA){
+  var mo=parseFloat(document.getElementById('montoPago').value)||0;if(mo<=0){alert('Monto');return;}
+  var fe=document.getElementById('fechaPago').value||new Date().toISOString().slice(0,10);
+  var a=get();var idx=-1;for(var i=0;i<a.length;i++)if(a[i].id==cliSel.id)idx=i;if(idx==-1)return;
+  if(!a[idx].pagos)a[idx].pagos=[];a[idx].pagos.push({monto:mo,fecha:fe});a[idx].pagado=(a[idx].pagado||0)+mo;if(a[idx].pagado>=a[idx].total)a[idx].est='Finalizado';
+  save(a);cerrarPago();render();
+  if(conWA){
+    var tel=(a[idx].tel||'').replace(/[^0-9]/g,'');if(tel){if(tel.indexOf('54')!=0)tel='549'+tel;
+      var pagado=a[idx].pagado;var saldo=a[idx].total-pagado;if(saldo<0)saldo=0;
+      var msg="*CREDIMACH - COMPROBANTE DE PAGO* %0A%0A";msg+="Estimado/a *"+encodeURIComponent(a[idx].nombre)+"*, hemos registrado su pago correctamente.%0A%0A";msg+="💵 *Importe abonado:* $"+mo.toLocaleString('es-AR')+"%0A";msg+="📅 *Fecha de pago:* "+fmt(fe)+"%0A";msg+="📊 *Total del crédito:* $"+a[idx].total.toLocaleString('es-AR')+"%0A";msg+="✅ *Total abonado a la fecha:* $"+pagado.toLocaleString('es-AR')+"%0A";msg+="💰 *Saldo pendiente:* $"+saldo.toLocaleString('es-AR')+"%0A%0A";msg+="Gracias por su compromiso.%0A";msg+="Quedamos a su disposición.%0A%0A";msg+="*CREDIMACH*";
+      window.open('https://wa.me/'+tel+'?text='+msg,'_blank');}
+  }
+}
+
+var editId=null;
+function abrirEdit(id){var a=get();var x=null;for(var i=0;i<a.length;i++)if(a[i].id==id)x=a[i];if(!x)return;editId=id;
+document.getElementById('e_nombre').value=x.nombre;document.getElementById('e_dni').value=x.dni||'';document.getElementById('e_tel').value=x.tel||'';document.getElementById('e_monto').value=x.monto;document.getElementById('e_cuotas').value=x.cuotas;document.getElementById('e_f1').value=x.f1||'';document.getElementById('e_f2').value=x.f2||'';document.getElementById('e_est').value=x.est;
+document.getElementById('modalEdit').style.display='flex';}
+function cerrarEdit(){document.getElementById('modalEdit').style.display='none';}
+function guardarEdit(){
+  var a=get();var idx=-1;for(var i=0;i<a.length;i++)if(a[i].id==editId)idx=i;if(idx==-1)return;
+  var mo=parseFloat(document.getElementById('e_monto').value)||0;var cu=parseFloat(document.getElementById('e_cuotas').value)||0;var tot=mo*1.4;
+  a[idx].nombre=document.getElementById('e_nombre').value.trim();a[idx].dni=document.getElementById('e_dni').value;a[idx].tel=document.getElementById('e_tel').value;
+  a[idx].monto=mo;a[idx].cuotas=cu;a[idx].total=tot;a[idx].cuotaM=cu>0?tot/cu:tot;a[idx].f1=document.getElementById('e_f1').value;a[idx].f2=document.getElementById('e_f2').value;a[idx].est=document.getElementById('e_est').value;
+  save(a);cerrarEdit();render();
+}
+
+function render(){var a=get();var tot=0;for(var i=0;i<a.length;i++)tot+=a[i].monto||0;document.getElementById('sTotal').innerText='$'+tot.toLocaleString('es-AR');document.getElementById('sCli').innerText=a.length;var atr=0;for(var i=0;i<a.length;i++){var dd=dias(a[i].f2);if(dd.n<0&&(a[i].pagado||0)<a[i].total)atr++;}document.getElementById('sAtr').innerText=atr;
+var b=(document.getElementById('bus').value||'').toLowerCase();var h='';
+for(var i=0;i<a.length;i++){var x=a[i];
+  var texto=(x.nombre+' '+(x.dni||'')+' '+(x.tel||'')).toLowerCase();
+  if(b&&texto.indexOf(b)<0)continue;
+  var d=dias(x.f2);var sal=x.total-(x.pagado||0);var porc=x.total>0?Math.round((x.pagado||0)/x.total*100):0;
+  h+='<div class=client><div class=cHead><div><b>'+x.nombre+'</b><div style="font-size:11px;color:#8fb8de">'+(x.dni||'')+' '+(x.tel||'')+'</div><div style="font-size:12px">$'+x.monto.toLocaleString('es-AR')+' | Saldo $'+sal.toLocaleString('es-AR')+'</div><div class=prog><i style="width:'+porc+'%"></i></div><div style="font-size:11px;margin-top:4px;color:#ffd500">'+d.txt+' - '+x.est+'</div></div><div style="color:#ff8a8a;cursor:pointer" onclick="borrar('+x.id+')">✕</div></div><div class=act><button class=bSmall style="background:#ffd500;color:#001233" onclick="abrirPago('+x.id+')">PAGO</button><button class=bSmall style="background:transparent;border:1px solid #fff;color:#fff" onclick="abrirEdit('+x.id+')">✏️ EDITAR</button></div></div>';
+}
+document.getElementById('lista').innerHTML=h||'<div style="color:#8fb8de;text-align:center;padding:20px">No hay clientes</div>';
+}
+function borrar(id){if(confirm('Borrar cliente?')){var a=get().filter(function(x){return x.id!=id});save(a);render();}}
+render();
+</script>
+</body>
+</html>
