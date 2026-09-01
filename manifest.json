@@ -1,21 +1,9 @@
 {
   "name": "CREDIMACH Private",
   "short_name": "CREDIMACH",
-  "description": "Control privado offline",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#001233",
   "theme_color": "#001233",
-  "icons": [
-    {
-      "src": "./credimach_logo_transparent.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./credimach_logo_transparent.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "icons": [{"src": "./logo.png","sizes": "512x512","type": "image/png"}]
 }
